@@ -9,7 +9,9 @@ Instructions are provided for WorkBuddy, DeepSeek Harness, Claude Code, Claude C
 ## 2. Download and prepare
 
 1. **Download the full package.** Get [fish-toxicology-research-workpack.zip](https://github.com/Accsy7/fish-toxicology-research/releases/latest/download/fish-toxicology-research-workpack.zip), which includes the plugin, SQLite database and database frontend.
+
 2. **For local use.** Extract the entire ZIP and keep its folder structure. The extracted tool folder holds the plugin and database. Create a separate study folder, or use an existing one, for your papers, data and research outputs. Open the study folder in your AI application, then follow the next section to load the plugin. Multiple studies can share one tool folder.
+
 3. **For cloud use.** In ChatGPT web or cloud Work, upload the full package ZIP and your study materials, then follow the corresponding section below.
 
 GitHub's **Code → Download ZIP** and the **Source code** release assets provide the source repository. The database and its frontend are distributed with `fish-toxicology-research-workpack.zip`. Choose the full package above to use the database.
@@ -20,7 +22,9 @@ GitHub's **Code → Download ZIP** and the **Source code** release assets provid
 <summary>WorkBuddy</summary>
 
 1. Install [WorkBuddy](https://www.workbuddy.cn/work/), select your study folder and use Agent mode.
+
 2. Under Skills → Add skill → Upload skill, import `adapters/workbuddy/fish-toxicology-research.zip` and enable it.
+
 3. Give the AI `toolkit/INSTALL.md` from the package and say: **“Connect this research tool to the current project.”**
 
 [Official skill guide](https://www.workbuddy.cn/docs/workbuddy/From-Beginner-to-Expert-Guide/Function-Description/Skills-Market)
@@ -31,7 +35,9 @@ GitHub's **Code → Download ZIP** and the **Source code** release assets provid
 <summary>DeepSeek Harness</summary>
 
 1. Download [Harness](https://www.deepseek.com/zh/harness/) and open your study folder.
+
 2. Give the AI `toolkit/INSTALL.md` and say: **“Connect this research tool to the current project.”**
+
 3. Once connected, describe your research question.
 
 [Official skill guide](https://deepseek-harness.github.io/deepseek-harness/en/reference/subsystems/skills)
@@ -42,7 +48,9 @@ GitHub's **Code → Download ZIP** and the **Source code** release assets provid
 <summary>Claude Code, including Code mode in Desktop</summary>
 
 1. Open or install [Claude Code](https://code.claude.com/docs/en/overview) and enter your study folder.
+
 2. Give the AI `toolkit/INSTALL.md` and say: **“Connect this research tool to the current project.”**
+
 3. Describe your research question. You can also invoke `/fish-toxicology-research`.
 
 [Official skill guide](https://code.claude.com/docs/en/skills)
@@ -53,7 +61,9 @@ GitHub's **Code → Download ZIP** and the **Source code** release assets provid
 <summary>Claude Cowork / Desktop</summary>
 
 1. In [Claude Desktop](https://claude.com/download), use Cowork or a task-execution mode with access to your study folder and the package.
+
 2. Under Customize → Skills → + → Create skill → Upload a skill, upload `adapters/claude/fish-toxicology-research.zip`. Enable the skill, code execution and file creation.
+
 3. Give the AI `toolkit/INSTALL.md` and say: **“Connect this research tool to the current project.”** For Desktop's Code mode, use the preceding instructions.
 
 [Official upload guide](https://support.claude.com/en/articles/12512180-use-skills-in-claude) · [Cowork folder access](https://support.claude.com/en/articles/13345190-get-started-with-claude-cowork)
@@ -64,7 +74,9 @@ GitHub's **Code → Download ZIP** and the **Source code** release assets provid
 <summary>Codex / local work in ChatGPT Desktop</summary>
 
 1. Open your study folder in Codex with local execution available.
+
 2. Give the AI `toolkit/INSTALL.md` and say: **“Connect this research tool to the current project.”**
+
 3. Describe your research question. You can also invoke `$fish-toxicology-research`.
 
 [Official skill guide](https://learn.chatgpt.com/docs/customization/overview#skills)
@@ -75,7 +87,9 @@ GitHub's **Code → Download ZIP** and the **Source code** release assets provid
 <summary>ChatGPT web / cloud Work</summary>
 
 1. Start a conversation and upload the full package ZIP and study materials. Use an environment that can extract archives, run code and create files.
+
 2. Say: **“Read toolkit/INSTALL.md in the uploaded package and connect this research tool to the current project.”**
+
 3. Once the AI confirms that it can read the materials and run the tools, describe your research question.
 
 The tools run in the current conversation environment. For a new conversation, upload the package and required materials again, then repeat the loading steps. [Cloud file access](https://learn.chatgpt.com/docs/enterprise/chatgpt-work-overview#cloud-work)
