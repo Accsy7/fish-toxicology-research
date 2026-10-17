@@ -12,7 +12,7 @@ Instructions are provided for WorkBuddy, DeepSeek Harness, Claude Code, Claude C
 2. **For local use.** Extract the entire ZIP and keep its folder structure. The extracted tool folder holds the plugin and database. Create a separate study folder, or use an existing one, for your papers, data and research outputs. Open the study folder in your AI application, then follow the next section to load the plugin. Multiple studies can share one tool folder.
 3. **For cloud use.** In ChatGPT web or cloud Work, upload the full package ZIP and your study materials, then follow the corresponding section below.
 
-GitHub's **Code → Download ZIP** and the **Source code** release assets contain only the source repository. The database and database frontend are distributed in the full package and are not stored in that repository, so the source archives do not include them. To get the database, download `fish-toxicology-research-workpack.zip` above; no separate data package is needed.
+GitHub's **Code → Download ZIP** and the **Source code** release assets provide the source repository. The database and its frontend are distributed with `fish-toxicology-research-workpack.zip`. Choose the full package above to use the database.
 
 ## 3. Load the plugin
 
@@ -78,7 +78,7 @@ GitHub's **Code → Download ZIP** and the **Source code** release assets contai
 2. Say: **“Read toolkit/INSTALL.md in the uploaded package and connect this research tool to the current project.”**
 3. Once the AI confirms that it can read the materials and run the tools, describe your research question.
 
-In ChatGPT web or cloud Work, the tools uploaded and loaded through this guide are used only in the current conversation environment. For a new conversation, provide the package and required materials again, then repeat the loading steps. [Cloud file access](https://learn.chatgpt.com/docs/enterprise/chatgpt-work-overview#cloud-work)
+The tools run in the current conversation environment. For a new conversation, upload the package and required materials again, then repeat the loading steps. [Cloud file access](https://learn.chatgpt.com/docs/enterprise/chatgpt-work-overview#cloud-work)
 
 </details>
 
@@ -88,7 +88,7 @@ The AI checks that it can read the research skill, access your materials, and ru
 
 > Study the estrogen-related toxicity of bisphenols in zebrafish. Use BPA as the reference, compare relative risks, and select representative compounds for experiments.
 
-Local outputs are saved under `research/` in your study folder: figures and data, XLSX and a web report. Reopen the same project to continue. For cloud tasks, download your outputs and provide them with the package when starting another session.
+Outputs include figures and data, XLSX and a web report. Local outputs are saved under `research/` in your study folder; reopen the same project to continue. Download cloud outputs to keep a copy.
 
 ## 5. If something fails
 

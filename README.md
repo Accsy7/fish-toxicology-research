@@ -41,7 +41,7 @@ Outputs are saved in your project's `research/` directory. Reopen the same proje
 <summary><strong>Package contents and scope</strong></summary>
 
 - The **full package** includes the plugin, a SQLite database snapshot, its SQL schema and a browser. The **source repository** includes the skill, query and export programs, templates and client adapters.
-- The database stores chemical identities and structures, experimental conditions and effects, genes, proteins and source records. It is used read-only. New studies supplement the evidence for their own scope.
+- The database stores chemical identities and structures, experimental conditions and effects, genes, proteins and source records. New studies supplement the evidence for their own scope.
 - Tools cover evidence queries, calculation-record checks, plotting and exports. Specialized calculations, such as molecular docking, are configured separately when appropriate.
 
 </details>
