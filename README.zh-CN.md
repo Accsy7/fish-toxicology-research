@@ -7,7 +7,7 @@
 <p align="center">
   <strong><a href="https://github.com/Accsy7/fish-toxicology-research/releases/latest/download/fish-toxicology-research-workpack.zip">下载完整工作包</a></strong>　 /　
   <a href="https://github.com/Accsy7/fish-toxicology-research/blob/main/docs/装载教程.md">装载教程</a>　 /　
-  <a href="docs/工作原理.md">推导与计算原理</a>
+  <a href="docs/工作原理.md">工作原理</a>
 </p>
 
 面向**鱼类与有机污染物毒性研究**的AI插件，集成SQLite数据库、数据库前端、AI分析与计算工具，用于风险比较和实验代表物选择。

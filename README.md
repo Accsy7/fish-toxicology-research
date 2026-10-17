@@ -7,7 +7,7 @@
 <p align="center">
   <strong><a href="https://github.com/Accsy7/fish-toxicology-research/releases/latest/download/fish-toxicology-research-workpack.zip">Download full package</a></strong>　 /　
   <a href="https://github.com/Accsy7/fish-toxicology-research/blob/main/docs/INSTALL.en.md">Installation</a>　 /　
-  <a href="docs/METHODS.en.md">Reasoning &amp; computation</a>
+  <a href="docs/METHODS.en.md">How it works</a>
 </p>
 
 An AI plugin for studying **the toxicity of organic pollutants in fish**. It combines a SQLite database, a database frontend, AI analysis and computational tools to compare risks and select compounds for experiments.
