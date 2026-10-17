@@ -37,14 +37,11 @@ Outputs are saved in your project's `research/` directory. Reopen the same proje
 | :--- | :--- | :--- |
 | SVG · PDF · PNG<br>Captions and underlying data | 00–07 XLSX<br>Predictions, evidence and experiments | Web overview and candidate details<br>Filters, sources and downloads |
 
-Web text and tables can be copied into Word. Species, candidate scope, pathways and experimental conditions are defined for each study.
-
 <details>
 <summary><strong>Package contents and scope</strong></summary>
 
 - The **full package** includes the plugin, a SQLite database snapshot, its SQL schema and a browser. The **source repository** includes the skill, query and export programs, templates and client adapters.
-- The database stores chemical identities and structures, experimental conditions and effects, genes, proteins and source records. It is used read-only. New studies supplement the evidence for their own scope; historical judgments retain their original conditions.
+- The database stores chemical identities and structures, experimental conditions and effects, genes, proteins and source records. It is used read-only. New studies supplement the evidence for their own scope.
 - Tools cover evidence queries, calculation-record checks, plotting and exports. Specialized calculations, such as molecular docking, are configured separately when appropriate.
-- Local installation, database queries and XLSX/web exports have been checked. Verification across all client interfaces and full scientific transfer to a new non-BMP study remain incomplete. Predictions retain their conditions and confidence; reliability depends on evidence quality and method suitability.
 
 </details>
