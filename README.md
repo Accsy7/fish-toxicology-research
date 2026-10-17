@@ -1,47 +1,50 @@
+<p align="right"><strong>简体中文</strong> · <a href="README.en.md">English</a></p>
+
 <p align="center">
-  <img src="docs/assets/research-cover.png" alt="鱼类毒性研究工作流：证据分析、风险比较、实验选物" width="100%">
+  <img src="docs/assets/research-cover.png" alt="鱼类毒性研究插件 · Fish Toxicology Research Plugin" width="100%">
 </p>
 
 <p align="center">
-  <b><a href="https://github.com/Accsy7/fish-toxicology-research/releases/latest/download/fish-toxicology-research-workpack.zip">下载完整工作包</a></b>　·　
-  <a href="docs/装载教程.md">装载教程</a>　·　
-  <a href="docs/工作原理.md">工作原理</a>
+  <strong><a href="https://github.com/Accsy7/fish-toxicology-research/releases/latest/download/fish-toxicology-research-workpack.zip">下载完整工作包</a></strong>　 /　
+  <a href="docs/装载教程.md">装载教程</a>　 /　
+  <a href="docs/工作原理.md">推导与计算原理</a>
 </p>
 
-面向**鱼类与有机污染物毒性研究**的AI辅助工作流。整合文献、实验和计算证据，比较候选物的相对风险，选择实验代表物，并生成可追溯的研究成果。
+面向**鱼类与有机污染物毒性研究**的AI插件，集成SQLite资料库、数据库浏览前端、证据驱动的机制推导skill及计算与可视化工具，用于候选物风险比较、实验代表物选择和研究成果输出。
 
-## 开始使用
-
-1. **下载并解压工作包**，准备自己的课题文件夹。完整包含资料库；GitHub的Source code压缩包仅含源码。
-2. 按[装载教程](docs/装载教程.md)选择客户端，将`toolkit/INSTALL.md`交给AI：**“把这个研究工具接入当前项目。”**
-3. 说明研究问题，附上已有资料或实验安排。例如：
-
-   > 研究双酚类对斑马鱼的雌激素相关毒性，以BPA为参照，比较风险并选出实验代表物。
-
-成果保存在课题目录的`research/`中，原始资料与旧版本保留。
-
-## 如何工作
+## 插件组成
 
 <picture>
   <source media="(max-width: 600px)" srcset="docs/assets/workflow-mobile.svg">
-  <img src="docs/assets/workflow.svg" alt="先整理证据，由AI推导，再复核原材料与判断，统一生成交付" width="100%">
+  <img src="docs/assets/workflow.svg" alt="资料库保存化合物、实验与蛋白证据；AI形成机制判断与风险分组；工具完成查询、计算记录核查和统一导出。" width="100%">
 </picture>
 
-AI负责证据解释与科学判断，工具负责记录、计算和明确矛盾检查。预测保留条件、反证与置信程度；风险分组和实验名单分别形成。三种交付读取同一份审定分析。[查看详细原理 →](docs/工作原理.md)
+AI综合来源、条件和反证，形成可检验的预测；风险分组与实验名单分别确定。内容复核通过后，图版、XLSX和网页读取同一份审定分析。[了解推导过程 →](docs/工作原理.md)
 
-## 交付内容
+## 开始一个课题
 
-| 科研图版 | XLSX工作簿 | 交互网页 |
+1. **准备项目。** 下载并解压完整工作包，另建自己的课题文件夹。
+2. **装载插件。** 按[教程](docs/装载教程.md)选择客户端，将包内`toolkit/INSTALL.md`交给AI：**“把这个研究工具接入当前项目。”**
+3. **提出研究问题。** 说明物种、候选物和关注的效应，附上已有资料或实验安排。例如：
+
+   > 研究双酚类对斑马鱼的雌激素相关毒性，以BPA为参照，比较风险并选出实验代表物。
+
+成果存入课题目录的`research/`。下次打开同一项目即可继续。
+
+## 研究成果
+
+| 科研图版 | 分析工作簿 | 交互报告 |
 | :--- | :--- | :--- |
-| SVG、PDF、PNG与对应数据 | 00—07：预测、依据、实验与蛋白记录 | 概览、筛选、逐物质详情与来源 |
+| SVG · PDF · PNG<br>图注与对应数据 | 00—07 XLSX<br>预测、依据与实验记录 | 网页概览与逐物质详情<br>筛选、来源与文件下载 |
 
-网页正文和表格支持复制到Word。物种、候选范围、通路与实验条件由课题确定。
+网页正文与表格可复制到Word。物种、物质范围、通路及实验条件均由课题输入。
 
 <details>
-<summary>适用范围与验证状态</summary>
+<summary><strong>下载内容与适用范围</strong></summary>
 
-用于组织证据、提出条件预测和支持实验选物。已完成本地安装、资料查询和XLSX／网页导出检查；各客户端界面尚未逐一实测，新的真实课题完整科学迁移验收尚未完成。预测可靠性取决于证据质量、条件可比性与机制适用性。
-
-客户端操作见[装载教程](docs/装载教程.md)，版本文件见[Releases](https://github.com/Accsy7/fish-toxicology-research/releases)。
+- **完整工作包**包含插件、SQLite数据库快照、SQL表结构和浏览前端；**源码仓库**包含skill、查询与导出程序、模板和客户端适配文件。
+- 资料库收录化合物身份与结构、实验条件与效应、基因与蛋白及来源记录，使用时保持只读。新增课题按实际范围补充资料；历史判断保留其原有条件。
+- 工具提供查询取证、计算记录核查、绘图和导出。分子对接等专项计算由AI根据适用性另行配置。
+- 已完成本地安装、查库和XLSX／网页导出检查；各客户端界面及非BMP新课题的完整科学迁移尚未全部验收。预测保留条件与置信程度，可靠性取决于证据质量和方法适用性。
 
 </details>

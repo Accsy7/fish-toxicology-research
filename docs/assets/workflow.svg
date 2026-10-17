@@ -1,16 +1,35 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="206" viewBox="0 0 1120 206" role="img" aria-labelledby="title desc">
-<title id="title">证据整理、AI推导、内容复核与统一交付</title>
-<desc id="desc">按课题范围整理文献、实验与计算，由AI形成机制判断、风险分组和实验选物；回到原材料复核，再由同一份审定分析生成图版、XLSX和网页。</desc>
-<rect width="1120" height="206" rx="14" fill="#f6f9f8"/>
-<g font-family="Microsoft YaHei, Noto Sans CJK SC, sans-serif">
-<g fill="#487975" font-size="16" font-weight="600" letter-spacing="2">
-<text x="30" y="40">01</text><text x="310" y="40">02</text><text x="590" y="40">03</text><text x="870" y="40">04</text></g>
-<g fill="#102e40" font-size="26" font-weight="700">
-<text x="30" y="88">证据整理</text><text x="310" y="88">AI 推导</text><text x="590" y="88">内容复核</text><text x="870" y="88">统一交付</text></g>
-<g fill="#4c626b" font-size="18">
-<text x="30" y="128">文献、实验与计算</text><text x="310" y="128">机制、风险与实验选物</text><text x="590" y="128">原始材料与判断依据</text><text x="870" y="128">图版、XLSX与网页</text></g>
-<g stroke="#a7c0ba" stroke-width="1.5" fill="none">
-<path d="M243 78h34m-7-7 7 7-7 7"/><path d="M523 78h34m-7-7 7 7-7 7"/><path d="M803 78h34m-7-7 7 7-7 7"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="1140" height="310" viewBox="0 0 1140 310" role="img" aria-labelledby="title">
+<title id="title">插件组成：数据库、机制推导、计算与交付</title>
+<rect width="1140" height="310" fill="#ffffff"/>
+<g font-family="Noto Sans SC, Microsoft YaHei, Segoe UI, sans-serif">
+<g transform="translate(0 0)"><rect width="364" height="218" rx="10" fill="#f1f6f5"/>
+<g transform="translate(28 24)" fill="none" stroke="#326b71" stroke-width="1.8" stroke-linejoin="round"><ellipse cx="21" cy="7" rx="19" ry="6"/><path d="M2 7v27c0 8 38 8 38 0V7M2 20c0 8 38 8 38 0"/></g>
+<text x="28" y="102" font-size="25" fill="#153846" font-weight="600">资料数据库</text>
+<text x="28" y="143" font-size="19" fill="#566b77" font-weight="400">SQLite 与浏览前端</text>
+<text x="28" y="177" font-size="19" fill="#566b77" font-weight="400">化合物 · 实验效应 · 蛋白</text>
 </g>
-<g fill="#527c76"><rect x="30" y="162" width="230" height="3" rx="1.5"/><rect x="310" y="162" width="230" height="3" rx="1.5"/><rect x="590" y="162" width="230" height="3" rx="1.5"/><rect x="870" y="162" width="220" height="3" rx="1.5"/></g>
+<g transform="translate(388 0)"><rect width="364" height="218" rx="10" fill="#f3f6f9"/>
+<g transform="translate(28 24)" fill="none" stroke="#326b71" stroke-width="1.8" stroke-linejoin="round"><circle cx="21" cy="20" r="5"/><circle cx="3" cy="4" r="3"/><circle cx="39" cy="4" r="3"/><circle cx="3" cy="36" r="3"/><circle cx="39" cy="36" r="3"/><path d="m6 7 11 10m8 0L36 7M6 33l11-10m8 0 11 10"/></g>
+<text x="28" y="102" font-size="25" fill="#153846" font-weight="600">机制推导</text>
+<text x="28" y="143" font-size="19" fill="#566b77" font-weight="400">来源、条件与反证</text>
+<text x="28" y="177" font-size="19" fill="#566b77" font-weight="400">风险分组 · 实验代表物</text>
+</g>
+<g transform="translate(776 0)"><rect width="364" height="218" rx="10" fill="#f7f5f0"/>
+<g transform="translate(28 24)" fill="none" stroke="#326b71" stroke-width="1.8" stroke-linejoin="round"><path d="M2 2v36h40M10 30V20h6v10M22 30V12h6v18M34 30V4h6v26"/></g>
+<text x="28" y="102" font-size="25" fill="#153846" font-weight="600">计算与交付</text>
+<text x="28" y="143" font-size="19" fill="#566b77" font-weight="400">查询取证与计算记录核查</text>
+<text x="28" y="177" font-size="19" fill="#566b77" font-weight="400">图版 · XLSX · 交互网页</text>
+</g>
+<path d="M0 246h1140" stroke="#dce6e6"/>
+<text x="18" y="286" font-size="15" fill="#6a888c" font-weight="600">01</text>
+<text x="52" y="286" font-size="21" fill="#234a55" font-weight="500">课题输入</text>
+<path d="M264 279h18m-5-5 5 5-5 5" stroke="#a6babe" fill="none" stroke-width="1.5"/>
+<text x="304" y="286" font-size="15" fill="#6a888c" font-weight="600">02</text>
+<text x="338" y="286" font-size="21" fill="#234a55" font-weight="500">证据与计算</text>
+<path d="M550 279h18m-5-5 5 5-5 5" stroke="#a6babe" fill="none" stroke-width="1.5"/>
+<text x="590" y="286" font-size="15" fill="#6a888c" font-weight="600">03</text>
+<text x="624" y="286" font-size="21" fill="#234a55" font-weight="500">内容复核</text>
+<path d="M836 279h18m-5-5 5 5-5 5" stroke="#a6babe" fill="none" stroke-width="1.5"/>
+<text x="876" y="286" font-size="15" fill="#6a888c" font-weight="600">04</text>
+<text x="910" y="286" font-size="21" fill="#234a55" font-weight="500">审定分析</text>
 </g></svg>
