@@ -6,7 +6,7 @@
 
 <p align="center">
   <strong><a href="https://github.com/Accsy7/fish-toxicology-research/releases/latest/download/fish-toxicology-research-workpack.zip">Download full package</a></strong>　 /　
-  <a href="docs/INSTALL.en.md">Installation</a>　 /　
+  <a href="https://github.com/Accsy7/fish-toxicology-research/blob/main/docs/INSTALL.en.md">Installation</a>　 /　
   <a href="docs/METHODS.en.md">Reasoning &amp; computation</a>
 </p>
 
@@ -24,7 +24,7 @@ The AI uses research findings and experimental conditions to make testable predi
 ## Start a study
 
 1. **Prepare your project.** Download and extract the full package, then create a separate folder for your study.
-2. **Load the plugin.** Follow the [client guide](docs/INSTALL.en.md). Give the AI the package's `toolkit/INSTALL.md` and ask: **“Connect this research tool to the current project.”**
+2. **Load the plugin.** Follow the [client guide](https://github.com/Accsy7/fish-toxicology-research/blob/main/docs/INSTALL.en.md). Give the AI the package's `toolkit/INSTALL.md` and ask: **“Connect this research tool to the current project.”**
 3. **Describe the research question.** Specify the species, candidates and effects of interest. Add existing papers or experimental plans. For example:
 
    > Study the estrogen-related toxicity of bisphenols in zebrafish. Use BPA as the reference, compare relative risks, and select representative compounds for experiments.

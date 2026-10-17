@@ -6,7 +6,7 @@
 
 <p align="center">
   <strong><a href="https://github.com/Accsy7/fish-toxicology-research/releases/latest/download/fish-toxicology-research-workpack.zip">下载完整工作包</a></strong>　 /　
-  <a href="docs/装载教程.md">装载教程</a>　 /　
+  <a href="https://github.com/Accsy7/fish-toxicology-research/blob/main/docs/装载教程.md">装载教程</a>　 /　
   <a href="docs/工作原理.md">推导与计算原理</a>
 </p>
 
@@ -24,7 +24,7 @@ AI结合研究资料、实验条件和反证，提出可检验的预测。
 ## 开始一个课题
 
 1. **准备项目。** 下载并解压完整工作包，另建自己的课题文件夹。
-2. **装载插件。** 按[教程](docs/装载教程.md)选择客户端，将包内`toolkit/INSTALL.md`交给AI：**“把这个研究工具接入当前项目。”**
+2. **装载插件。** 按[教程](https://github.com/Accsy7/fish-toxicology-research/blob/main/docs/装载教程.md)选择客户端，将包内`toolkit/INSTALL.md`交给AI：**“把这个研究工具接入当前项目。”**
 3. **提出研究问题。** 说明物种、候选物和关注的效应，附上已有资料或实验安排。例如：
 
    > 研究双酚类对斑马鱼的雌激素相关毒性，以BPA为参照，比较风险并选出实验代表物。

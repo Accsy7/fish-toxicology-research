@@ -1,6 +1,6 @@
 # Installation
 
-[简体中文](装载教程.md) · [Project overview](../README.md)
+**English** · [简体中文](https://github.com/Accsy7/fish-toxicology-research/blob/main/docs/装载教程.md) · [Project homepage](https://github.com/Accsy7/fish-toxicology-research#readme)
 
 ## 1. Choose your AI application
 
@@ -8,9 +8,11 @@ Instructions are provided for WorkBuddy, DeepSeek Harness, Claude Code, Claude C
 
 ## 2. Download and prepare
 
-[Download the full package](https://github.com/Accsy7/fish-toxicology-research/releases/latest/download/fish-toxicology-research-workpack.zip), extract it and keep it in a stable location. Use an existing study folder or create an empty one. Multiple studies can share the tool package.
+1. **Download the full package.** Get [fish-toxicology-research-workpack.zip](https://github.com/Accsy7/fish-toxicology-research/releases/latest/download/fish-toxicology-research-workpack.zip), which includes the plugin, SQLite database and database frontend.
+2. **For local use.** Extract the entire ZIP and keep its folder structure. The extracted tool folder holds the plugin and database. Create a separate study folder, or use an existing one, for your papers, data and research outputs. Open the study folder in your AI application, then follow the next section to load the plugin. Multiple studies can share one tool folder.
+3. **For cloud use.** In ChatGPT web or cloud Work, upload the full package ZIP and your study materials, then follow the corresponding section below.
 
-The GitHub source archive does not include the database. When using source only, the AI can connect an existing database or start with your materials and public sources.
+GitHub's **Code → Download ZIP** and the **Source code** release assets contain only the source repository. The database and database frontend are distributed in the full package and are not stored in that repository, so the source archives do not include them. To get the database, download `fish-toxicology-research-workpack.zip` above; no separate data package is needed.
 
 ## 3. Load the plugin
 
@@ -72,11 +74,11 @@ The GitHub source archive does not include the database. When using source only,
 <details>
 <summary>ChatGPT web / cloud Work</summary>
 
-1. Create a project or task and upload the package and study materials. Use an environment that can extract archives, run code and create files.
+1. Start a conversation and upload the full package ZIP and study materials. Use an environment that can extract archives, run code and create files.
 2. Say: **“Read toolkit/INSTALL.md in the uploaded package and connect this research tool to the current project.”**
 3. Once the AI confirms that it can read the materials and run the tools, describe your research question.
 
-Cloud tasks cannot read local computer paths directly. Provide accessible files. This loads the tools into the current task; it does not install an account-wide plugin. [Official plugin guide](https://learn.chatgpt.com/docs/build-plugins)
+In ChatGPT web or cloud Work, the tools uploaded and loaded through this guide are used only in the current conversation environment. For a new conversation, provide the package and required materials again, then repeat the loading steps. [Cloud file access](https://learn.chatgpt.com/docs/enterprise/chatgpt-work-overview#cloud-work)
 
 </details>
 
@@ -96,5 +98,3 @@ Local outputs are saved under `research/` in your study folder: figures and data
 | Local files inaccessible | “Tell me which folder needs access or which files I need to provide.” |
 | Database disconnected | “Check the database path. If no database is available, start with my materials and public sources.” |
 | Missing dependencies | “Install the required dependencies in this project, then check queries and exports.” |
-
-Installation, evidence retrieval and export programs have been tested. The client interfaces above have not all been verified on actual installations.
