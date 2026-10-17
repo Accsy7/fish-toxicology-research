@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="400" viewBox="0 0 600 400" role="img" aria-labelledby="title desc">
+<title id="title">证据整理、AI推导、内容复核与统一交付</title>
+<desc id="desc">按顺序整理资料和计算，由AI形成判断，回到原材料复核，再从审定分析生成三种交付。</desc>
+<rect width="600" height="400" rx="14" fill="#f6f9f8"/>
+<g font-family="Microsoft YaHei, Noto Sans CJK SC, sans-serif">
+<g fill="#487975" font-size="18" font-weight="600" letter-spacing="2">
+<text x="30" y="38">01</text><text x="330" y="38">02</text><text x="30" y="238">03</text><text x="330" y="238">04</text></g>
+<g fill="#102e40" font-size="28" font-weight="700">
+<text x="30" y="84">证据整理</text><text x="330" y="84">AI 推导</text><text x="30" y="284">内容复核</text><text x="330" y="284">统一交付</text></g>
+<g fill="#4c626b" font-size="22">
+<text x="30" y="127">文献、实验与计算</text><text x="330" y="127">机制、风险与</text><text x="330" y="155">实验选物</text>
+<text x="30" y="327">原始材料与判断依据</text><text x="330" y="327">图版、XLSX与网页</text></g>
+<g fill="#527c76"><rect x="30" y="176" width="240" height="3" rx="1.5"/><rect x="330" y="176" width="240" height="3" rx="1.5"/><rect x="30" y="364" width="240" height="3" rx="1.5"/><rect x="330" y="364" width="240" height="3" rx="1.5"/></g>
+</g></svg>

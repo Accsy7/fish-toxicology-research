@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="206" viewBox="0 0 1120 206" role="img" aria-labelledby="title desc">
+<title id="title">证据整理、AI推导、内容复核与统一交付</title>
+<desc id="desc">按课题范围整理文献、实验与计算，由AI形成机制判断、风险分组和实验选物；回到原材料复核，再由同一份审定分析生成图版、XLSX和网页。</desc>
+<rect width="1120" height="206" rx="14" fill="#f6f9f8"/>
+<g font-family="Microsoft YaHei, Noto Sans CJK SC, sans-serif">
+<g fill="#487975" font-size="16" font-weight="600" letter-spacing="2">
+<text x="30" y="40">01</text><text x="310" y="40">02</text><text x="590" y="40">03</text><text x="870" y="40">04</text></g>
+<g fill="#102e40" font-size="26" font-weight="700">
+<text x="30" y="88">证据整理</text><text x="310" y="88">AI 推导</text><text x="590" y="88">内容复核</text><text x="870" y="88">统一交付</text></g>
+<g fill="#4c626b" font-size="18">
+<text x="30" y="128">文献、实验与计算</text><text x="310" y="128">机制、风险与实验选物</text><text x="590" y="128">原始材料与判断依据</text><text x="870" y="128">图版、XLSX与网页</text></g>
+<g stroke="#a7c0ba" stroke-width="1.5" fill="none">
+<path d="M243 78h34m-7-7 7 7-7 7"/><path d="M523 78h34m-7-7 7 7-7 7"/><path d="M803 78h34m-7-7 7 7-7 7"/>
+</g>
+<g fill="#527c76"><rect x="30" y="162" width="230" height="3" rx="1.5"/><rect x="310" y="162" width="230" height="3" rx="1.5"/><rect x="590" y="162" width="230" height="3" rx="1.5"/><rect x="870" y="162" width="220" height="3" rx="1.5"/></g>
+</g></svg>

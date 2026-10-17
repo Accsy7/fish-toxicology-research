@@ -10,7 +10,7 @@ import tempfile
 
 HOME = Path(__file__).resolve().parent
 PACKAGE_ROOT = HOME.parent if HOME.name == 'toolkit' else HOME
-VERSION = '1.2.1'
+VERSION = '1.2.2'
 NAME = 'fish-toxicology-research'
 
 
@@ -82,7 +82,7 @@ def install(project, client='both', database=None):
                 shutil.copytree(HOME / folder, managed / folder,
                                 ignore=shutil.ignore_patterns('__pycache__', '*.pyc'))
         config = {'schema_version': '1.1', 'package_version': VERSION,
-                  'skill_version': '1.3.0',
+                  'skill_version': '1.3.1',
                   'skill': relative(next(iter(destinations.values())) / 'SKILL.md', project) if destinations else '.fish-toxicology/skill/SKILL.md',
                   'database': data, 'analysis_catalog': 'research/catalog.json',
                   'projects_dir': 'research', 'query_tool': '.fish-toxicology/tools/research.py',
