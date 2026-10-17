@@ -1,0 +1,20 @@
+{
+  "schema_version": "1.0.0",
+  "status": "unconfigured",
+  "project_id": null,
+  "research_question": null,
+  "target_species_and_stage": null,
+  "reference_id": null,
+  "pathway_or_mechanism_scope": null,
+  "endpoints": [],
+  "comparison_conditions": null,
+  "unconfirmed_experimental_parameters": [],
+  "scope": {"candidates": [], "nodes": [], "references": []},
+  "selection_budget": {"minimum": null, "maximum": null, "include_reference": true},
+  "formal_analysis": null,
+  "analysis_pointer": null,
+  "approved_format": "fish-toxicology-format-1.0.0",
+  "experiment_preparation_parallel": true,
+  "default_outputs": ["scientific_figures_and_tables", "xlsx_00_07", "interactive_html"],
+  "independent_docx": false
+}

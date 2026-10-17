@@ -1,0 +1,17 @@
+__pycache__/
+*.pyc
+.venv/
+vendor/
+database-browser/
+projects/
+research/
+audit/
+workspace.json
+.fish-toxicology/
+*.sqlite3
+*.sql
+*.zip
+!adapters/claude/*.zip
+!adapters/workbuddy/*.zip
+toolkit/skill/assets/approved-workbook-example.xlsx
+toolkit/skill/assets/accepted-preview.png

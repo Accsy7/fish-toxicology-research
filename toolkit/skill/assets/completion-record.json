@@ -1,0 +1,16 @@
+{
+  "schema_version": "1.0.0",
+  "stage": "scientific_analysis",
+  "scope_dispositions": [],
+  "scientific_outputs": {"candidate_predictions": null, "risk_order_or_groups": null, "representative_decisions": null, "unresolved_items_and_impacts": null},
+  "content_review": {"status": "not_performed", "reviewer": null, "record_file": null, "coverage": {"candidates": [], "nodes": [], "references": []}},
+  "blocking_errors": [],
+  "checks": {
+    "explicit_contradictions": {"status": "not_performed", "record_file": null},
+    "negative_delivery_cases": {"status": "not_performed", "record_file": null},
+    "expression_and_falsification": {"status": "not_performed", "record_file": null},
+    "final_artifact_reading": {"status": "not_performed", "record_file": null}
+  },
+  "experimental_parameters": [],
+  "notes": "每条范围处置记录含category、id、status、evidence_files、contribution。status为completed、blocked_after_attempt或not_applicable。受阻另写attempted、obstacle、alternative、impact；不适用另写reason、alternative、impact。此记录链接实际分析及审核文件，不替代它们。"
+}
