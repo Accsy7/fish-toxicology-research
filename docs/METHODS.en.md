@@ -1,6 +1,6 @@
 # Reasoning and computation
 
-[简体中文](工作原理.md) · [Project overview](../README.en.md)
+[简体中文](工作原理.md) · [Project overview](../README.md)
 
 The plugin starts from the conditions of the current study. The AI interprets evidence and develops scientific judgments; programs manage records, reproducible operations and explicit consistency checks.
 

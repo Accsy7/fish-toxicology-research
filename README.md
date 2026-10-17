@@ -1,50 +1,50 @@
-<p align="right"><strong>简体中文</strong> · <a href="README.en.md">English</a></p>
+<p align="right"><strong>English</strong> · <a href="README.zh-CN.md">简体中文</a></p>
 
 <p align="center">
-  <img src="docs/assets/research-cover.png" alt="鱼类毒性研究插件 · Fish Toxicology Research Plugin" width="100%">
+  <img src="docs/assets/research-cover.png" alt="Fish Toxicology Research Plugin · 鱼类毒性研究插件" width="100%">
 </p>
 
 <p align="center">
-  <strong><a href="https://github.com/Accsy7/fish-toxicology-research/releases/latest/download/fish-toxicology-research-workpack.zip">下载完整工作包</a></strong>　 /　
-  <a href="docs/装载教程.md">装载教程</a>　 /　
-  <a href="docs/工作原理.md">推导与计算原理</a>
+  <strong><a href="https://github.com/Accsy7/fish-toxicology-research/releases/latest/download/fish-toxicology-research-workpack.zip">Download full package</a></strong>　 /　
+  <a href="docs/INSTALL.en.md">Installation</a>　 /　
+  <a href="docs/METHODS.en.md">Reasoning &amp; computation</a>
 </p>
 
-面向**鱼类与有机污染物毒性研究**的AI插件，集成SQLite资料库、数据库浏览前端、证据驱动的机制推导skill及计算与可视化工具，用于候选物风险比较、实验代表物选择和研究成果输出。
+An AI plugin for studying **the toxicity of organic pollutants in fish**. It combines a SQLite database, a database frontend, AI analysis and computational tools to compare risks and select compounds for experiments.
 
-## 插件组成
+## What is included
 
 <picture>
-  <source media="(max-width: 600px)" srcset="docs/assets/workflow-mobile.svg">
-  <img src="docs/assets/workflow.svg" alt="资料库保存化合物、实验与蛋白证据；AI形成机制判断与风险分组；工具完成查询、计算记录核查和统一导出。" width="100%">
+  <source media="(max-width: 600px)" srcset="docs/assets/workflow-mobile-en.svg">
+  <img src="docs/assets/workflow-en.svg" alt="SQLite database and frontend: compounds, experimental effects and proteins. AI analysis: risk groups and representative compounds. Computational tools: data queries and calculation checks." width="100%">
 </picture>
 
-AI综合来源、条件和反证，形成可检验的预测；风险分组与实验名单分别确定。内容复核通过后，图版、XLSX和网页读取同一份审定分析。[了解推导过程 →](docs/工作原理.md)
+The AI uses research findings and experimental conditions to make testable predictions, taking conflicting evidence into account.
 
-## 开始一个课题
+## Start a study
 
-1. **准备项目。** 下载并解压完整工作包，另建自己的课题文件夹。
-2. **装载插件。** 按[教程](docs/装载教程.md)选择客户端，将包内`toolkit/INSTALL.md`交给AI：**“把这个研究工具接入当前项目。”**
-3. **提出研究问题。** 说明物种、候选物和关注的效应，附上已有资料或实验安排。例如：
+1. **Prepare your project.** Download and extract the full package, then create a separate folder for your study.
+2. **Load the plugin.** Follow the [client guide](docs/INSTALL.en.md). Give the AI the package's `toolkit/INSTALL.md` and ask: **“Connect this research tool to the current project.”**
+3. **Describe the research question.** Specify the species, candidates and effects of interest. Add existing papers or experimental plans. For example:
 
-   > 研究双酚类对斑马鱼的雌激素相关毒性，以BPA为参照，比较风险并选出实验代表物。
+   > Study the estrogen-related toxicity of bisphenols in zebrafish. Use BPA as the reference, compare relative risks, and select representative compounds for experiments.
 
-成果存入课题目录的`research/`。下次打开同一项目即可继续。
+Outputs are saved in your project's `research/` directory. Reopen the same project to continue.
 
-## 研究成果
+## Research outputs
 
-| 科研图版 | 分析工作簿 | 交互报告 |
+| Scientific figures | Analysis workbook | Interactive report |
 | :--- | :--- | :--- |
-| SVG · PDF · PNG<br>图注与对应数据 | 00—07 XLSX<br>预测、依据与实验记录 | 网页概览与逐物质详情<br>筛选、来源与文件下载 |
+| SVG · PDF · PNG<br>Captions and underlying data | 00–07 XLSX<br>Predictions, evidence and experiments | Web overview and candidate details<br>Filters, sources and downloads |
 
-网页正文与表格可复制到Word。物种、物质范围、通路及实验条件均由课题输入。
+Web text and tables can be copied into Word. Species, candidate scope, pathways and experimental conditions are defined for each study.
 
 <details>
-<summary><strong>下载内容与适用范围</strong></summary>
+<summary><strong>Package contents and scope</strong></summary>
 
-- **完整工作包**包含插件、SQLite数据库快照、SQL表结构和浏览前端；**源码仓库**包含skill、查询与导出程序、模板和客户端适配文件。
-- 资料库收录化合物身份与结构、实验条件与效应、基因与蛋白及来源记录，使用时保持只读。新增课题按实际范围补充资料；历史判断保留其原有条件。
-- 工具提供查询取证、计算记录核查、绘图和导出。分子对接等专项计算由AI根据适用性另行配置。
-- 已完成本地安装、查库和XLSX／网页导出检查；各客户端界面及非BMP新课题的完整科学迁移尚未全部验收。预测保留条件与置信程度，可靠性取决于证据质量和方法适用性。
+- The **full package** includes the plugin, a SQLite database snapshot, its SQL schema and a browser. The **source repository** includes the skill, query and export programs, templates and client adapters.
+- The database stores chemical identities and structures, experimental conditions and effects, genes, proteins and source records. It is used read-only. New studies supplement the evidence for their own scope; historical judgments retain their original conditions.
+- Tools cover evidence queries, calculation-record checks, plotting and exports. Specialized calculations, such as molecular docking, are configured separately when appropriate.
+- Local installation, database queries and XLSX/web exports have been checked. Verification across all client interfaces and full scientific transfer to a new non-BMP study remain incomplete. Predictions retain their conditions and confidence; reliability depends on evidence quality and method suitability.
 
 </details>

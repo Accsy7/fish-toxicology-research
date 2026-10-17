@@ -1,6 +1,6 @@
 # Installation
 
-[简体中文](装载教程.md) · [Project overview](../README.en.md)
+[简体中文](装载教程.md) · [Project overview](../README.md)
 
 ## 1. Choose your AI application
 

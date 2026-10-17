@@ -1,32 +1,22 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="600" height="800" viewBox="0 0 600 800" role="img" aria-labelledby="title">
-<title id="title">Plugin components: evidence database, reasoning, computation and outputs</title>
-<rect width="600" height="800" fill="#ffffff"/>
-<g font-family="Noto Sans SC, Microsoft YaHei, Segoe UI, sans-serif">
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="628" viewBox="0 0 600 628" role="img" aria-labelledby="title">
+<title id="title">Plugin components: database, AI analysis and computational tools</title>
+<rect width="600" height="628" fill="#ffffff"/>
+<g font-family="Segoe UI, Arial, sans-serif">
 <g transform="translate(0 0)"><rect width="600" height="196" rx="10" fill="#f1f6f5"/>
 <g transform="translate(28 24)" fill="none" stroke="#326b71" stroke-width="1.8" stroke-linejoin="round"><ellipse cx="21" cy="7" rx="19" ry="6"/><path d="M2 7v27c0 8 38 8 38 0V7M2 20c0 8 38 8 38 0"/></g>
-<text x="28" y="102" font-size="29" fill="#153846" font-weight="600">Evidence database</text>
-<text x="28" y="143" font-size="24" fill="#566b77" font-weight="400">SQLite and browser</text>
-<text x="28" y="177" font-size="24" fill="#566b77" font-weight="400">Chemicals, effects, proteins</text>
+<text x="28" y="102" font-size="29" fill="#153846" font-weight="600">Research database</text>
+<text x="28" y="143" font-size="24" fill="#566b77" font-weight="400">SQLite database and frontend</text>
+<text x="28" y="177" font-size="24" fill="#566b77" font-weight="400">Compounds / Experimental effects / Proteins</text>
 </g>
 <g transform="translate(0 216)"><rect width="600" height="196" rx="10" fill="#f3f6f9"/>
 <g transform="translate(28 24)" fill="none" stroke="#326b71" stroke-width="1.8" stroke-linejoin="round"><circle cx="21" cy="20" r="5"/><circle cx="3" cy="4" r="3"/><circle cx="39" cy="4" r="3"/><circle cx="3" cy="36" r="3"/><circle cx="39" cy="36" r="3"/><path d="m6 7 11 10m8 0L36 7M6 33l11-10m8 0 11 10"/></g>
-<text x="28" y="102" font-size="29" fill="#153846" font-weight="600">Mechanistic reasoning</text>
+<text x="28" y="102" font-size="29" fill="#153846" font-weight="600">AI analysis</text>
 <text x="28" y="143" font-size="24" fill="#566b77" font-weight="400">Conditions and counterevidence</text>
-<text x="28" y="177" font-size="24" fill="#566b77" font-weight="400">Risk groups and compound selection</text>
+<text x="28" y="177" font-size="24" fill="#566b77" font-weight="400">Risk groups / Representative compounds</text>
 </g>
 <g transform="translate(0 432)"><rect width="600" height="196" rx="10" fill="#f7f5f0"/>
 <g transform="translate(28 24)" fill="none" stroke="#326b71" stroke-width="1.8" stroke-linejoin="round"><path d="M2 2v36h40M10 30V20h6v10M22 30V12h6v18M34 30V4h6v26"/></g>
-<text x="28" y="102" font-size="29" fill="#153846" font-weight="600">Tools and outputs</text>
-<text x="28" y="143" font-size="24" fill="#566b77" font-weight="400">Queries and calculation checks</text>
-<text x="28" y="177" font-size="24" fill="#566b77" font-weight="400">Figures, XLSX and web reports</text>
+<text x="28" y="102" font-size="29" fill="#153846" font-weight="600">Computational tools</text>
+<text x="28" y="143" font-size="24" fill="#566b77" font-weight="400">Data queries and calculation checks</text>
 </g>
-<path d="M22 680h556" stroke="#dce6e6"/>
-<text x="28" y="726" font-size="17" fill="#6a888c" font-weight="600">01</text>
-<text x="68" y="726" font-size="19" fill="#234a55" font-weight="500">Study input</text>
-<text x="328" y="726" font-size="17" fill="#6a888c" font-weight="600">02</text>
-<text x="368" y="726" font-size="19" fill="#234a55" font-weight="500">Evidence &amp; calculations</text>
-<text x="28" y="773" font-size="17" fill="#6a888c" font-weight="600">03</text>
-<text x="68" y="773" font-size="19" fill="#234a55" font-weight="500">Content review</text>
-<text x="328" y="773" font-size="17" fill="#6a888c" font-weight="600">04</text>
-<text x="368" y="773" font-size="19" fill="#234a55" font-weight="500">Reviewed analysis</text>
 </g></svg>
