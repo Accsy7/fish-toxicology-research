@@ -10,7 +10,7 @@ import tempfile
 
 HOME = Path(__file__).resolve().parent
 PACKAGE_ROOT = HOME.parent if HOME.name == 'toolkit' else HOME
-VERSION = '1.2.3'
+VERSION = '1.2.1'
 NAME = 'fish-toxicology-research'
 
 
