@@ -20,7 +20,7 @@ def write(p,value):
     p.write_text(json.dumps(value,ensure_ascii=False,indent=2),'utf-8')
     return p
 
-@unittest.skipUnless((PACKAGE/'toolkit/workspace.json').exists(), 'Set FISH_TEST_BUNDLE to the extracted full workpack')
+@unittest.skipUnless((PACKAGE/'toolkit/workspace.json').exists() and load(PACKAGE/'toolkit/workspace.json').get('database'), 'Legacy full-workpack checks require its bundled database; current software-only checks are in test_portable_install.py')
 class RevisionTests(unittest.TestCase):
     def setUp(self):
         self.temp=tempfile.TemporaryDirectory()

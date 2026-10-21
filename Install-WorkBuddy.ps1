@@ -2,6 +2,7 @@ param(
     [Parameter(Mandatory=$true)][string]$ProjectPath,
     [string]$PythonPath,
     [string]$WorkBuddyHome,
+    [string]$CatalogPath,
     [switch]$UpdateTools,
     [switch]$ReplaceManaged
 )
@@ -10,6 +11,7 @@ $ErrorActionPreference = 'Stop'
 $OutputEncoding = [Console]::OutputEncoding
 $installArgs = @('-X', 'utf8', '-B', (Join-Path $PSScriptRoot 'toolkit/install.py'), '--project', $ProjectPath, '--client', 'workbuddy')
 if ($WorkBuddyHome) { $installArgs += @('--workbuddy-home', $WorkBuddyHome) }
+if ($CatalogPath) { $installArgs += @('--catalog', $CatalogPath) }
 if ($UpdateTools) { $installArgs += '--update-tools' }
 if ($ReplaceManaged) { $installArgs += '--replace-managed' }
 if ($PythonPath) { & $PythonPath @installArgs }

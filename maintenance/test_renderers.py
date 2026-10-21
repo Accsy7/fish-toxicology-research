@@ -86,7 +86,8 @@ class RendererTests(unittest.TestCase):
     def test_review_bound_to_actual_project_and_content(self):
         r=dict(record_type="publication_review",project_id="example",analysis_version="1",
                publication_sha256=digest(self.data),decision="accepted",reviewer="Reviewer",
-               chemical_ids=["a"],findings=["Read the analysis and checked its mapping."])
+               chemical_ids=["a"],review_mode="self_review",open_blockers=[],
+               findings=[dict(id="F1",severity="minor",status="resolved",basis="Read the synthetic analysis and checked its mapping.",resolution="Synthetic mapping reviewed and retained.")])
         f=self.write("review.json",r)
         check_review(dict(path=f.name,sha256=sha(f)),self.data,self.base)
         r["project_id"]="another-project";f=self.write("review.json",r)

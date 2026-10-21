@@ -111,7 +111,7 @@ def by_ids(c, table, key, ids):
 def evidence(c, cid, include_history=False):
     chemical = rows(c, 'SELECT * FROM chemicals WHERE chemical_id=?', (cid,))[0]
     measurements = rows(c, '''SELECT * FROM v_measurements
-      WHERE instr('|'||chemical_ids||'|',?)>0 ORDER BY measurement_id''', ('|' + cid + '|',))
+      WHERE sample_id IN (SELECT sample_id FROM sample_components WHERE chemical_id=?) ORDER BY measurement_id''', (cid,))
     groups = by_ids(c, 'experimental_groups', 'group_id', [r['group_id'] for r in measurements])
     samples = by_ids(c, 'samples', 'sample_id', [r['sample_id'] for r in groups])
     components = by_ids(c, 'sample_components', 'sample_id', [r['sample_id'] for r in samples])
@@ -183,7 +183,11 @@ def evidence(c, cid, include_history=False):
     return packet
 
 
-def extract(root, terms, output, include_history=False):
+def extract(root, terms, output, include_history=False, support='default'):
+    config=load(config_path(root))
+    if config.get('database',{}).get('catalog'):
+        from catalog_access import extract_catalog
+        return extract_catalog(root,config,terms,output,include_history,support)
     output = Path(output).resolve()
     if output.exists():
         raise ValueError('取证目录已存在，请另存一版。')
@@ -241,6 +245,20 @@ def register(root, manifest_path):
     analysis = load(analysis_path)
     if analysis.get('project_id')!=pid or analysis.get('analysis_version')!=version:
         raise ValueError('登记的课题或版本与正式分析不一致。')
+    from quality_contract import assert_analysis
+    from analysis_checks import materialize
+    assert_analysis(materialize(analysis),analysis_path.parent)
+    completion=m.get('completion',{})
+    if not all(completion.get(k) for k in ('path','sha256','project')):
+        raise ValueError('新登记必须绑定实际完成检查记录及课题配置；文件存在不等于研究目标完成。')
+    completion_path=(manifest_path.parent/completion['path']).resolve()
+    if sha(completion_path)!=completion['sha256']:raise ValueError('完成检查记录变化。')
+    import importlib.util
+    checker_path=skill_home()/'scripts/check_completion.py'
+    spec=importlib.util.spec_from_file_location('delivery_completion_check',checker_path)
+    checker=importlib.util.module_from_spec(spec);spec.loader.exec_module(checker)
+    completion_result=checker.check(load(manifest_path.parent/completion['project']),load(completion_path),completion_path.parent)
+    if completion_result['errors']:raise ValueError(json.dumps(completion_result,ensure_ascii=False))
     review = m['content_review']
     if review.get('decision') not in ('accepted', 'accepted_with_stated_limits') or not review.get('reviewer'):
         raise ValueError('缺少实际内容复核者或有效复核结果。')
@@ -314,6 +332,8 @@ def register(root, manifest_path):
              'artifacts': [{'kind': a['kind'], 'path': relative(manifest_path.parent / a['path'])} for a in m['artifacts']],
              'reviewer': review['reviewer'], 'review_decision': review['decision'],
              'candidate_count': len(candidate_ids), 'registration_is_new_scientific_review': False}
+    entry['research_objective_status']=completion_result['objective_status']
+    entry['completion']=relative(completion_path)
     for record in review['records']:
         relative(manifest_path.parent / record['path'])
     catalog['analyses'].append(entry)
@@ -341,35 +361,67 @@ def catalog_html(root, catalog):
     target.write_text(page, 'utf-8')
 
 
-def doctor(root):
+def doctor(root, deep=False):
     config = load(config_path(root))
     from bundle_runtime import inspect
     runtime = inspect(root / '.fish-toxicology' if (root / '.fish-toxicology').exists() else root)
     if not config.get('database'):
         errors=runtime['errors'] + (['组件与包清单不同：'+'；'.join(runtime['modified_files'])] if runtime['modified_files'] else [])
         return {'ready_for_local_queries': False, 'errors': errors, 'runtime':runtime,
+                'warnings': ['未绑定独立数据组件；用安装器 --catalog 指定已解压的catalog.json。'],
                 'ready_for_public_source_research': not errors,
                 'database_status': 'not_connected',
                 'scientific_analysis_or_review_performed': False}
     c, config, db = connect(root)
     try:
         errors = list(runtime['errors'])
+        warnings = []
         if runtime['modified_files']:
             errors.append('组件与包清单不同：'+'；'.join(runtime['modified_files']))
-        integrity = c.execute('PRAGMA quick_check').fetchone()[0]
-        foreign = list(c.execute('PRAGMA foreign_key_check'))
-        if integrity != 'ok' or foreign:
-            errors.append('数据库完整性或关联检查失败。')
-        if sha(db) != config['database']['sha256']:
-            errors.append('数据库文件与工作包登记版本不一致。')
+        checks={'mode':'connection_and_version','full_hash_checked':False,'integrity_checked':False}
+        meta=c.execute("SELECT value FROM metadata WHERE key='database_version'").fetchone()
+        if meta and config['database'].get('version') not in ('external_snapshot',meta[0]):
+            errors.append('数据库内容版本与绑定版本不一致。')
+        if deep:
+            integrity=c.execute('PRAGMA quick_check').fetchone()[0]
+            foreign=list(c.execute('PRAGMA foreign_key_check'))
+            actual_hash=sha(db)
+            checks.update(full_hash_checked=True,integrity_checked=True,quick_check=integrity,foreign_key_errors=len(foreign),actual_sha256=actual_hash)
+            if integrity!='ok' or foreign:errors.append('数据库完整性或关联检查失败。')
+            if config['database'].get('sha256') and actual_hash!=config['database']['sha256']:
+                errors.append('数据库文件与工作包登记版本不一致。')
+            if not config['database'].get('sha256'):
+                warnings.append('此外置资料绑定未登记fish SQLite哈希；已计算哈希，仍须和数据组件回执核对。')
         required = [config['skill'], config.get('query_tool', 'tools/research.py')]
         required += [config['database'][k] for k in ('browser', 'schema') if config['database'].get(k)]
         for path in required:
             if not (root / path).is_file():
                 errors.append('缺少文件：' + path)
-        return {'ready_for_local_queries': not errors, 'errors': errors,
+        catalog_checks=None
+        if config['database'].get('catalog'):
+            try:
+                from catalog_access import open_catalog
+                with open_catalog(root,config) as catalog:
+                    catalog_checks={'version':catalog.config['version'],'policy_version':catalog.policy.get('version'),
+                        'files':{k:str(v) for k,v in catalog.paths.items()},'read_only':True,
+                        'identity_runtime_available':catalog.d is not None}
+                    for key in ('observations','molecular_support','identities','policy'):
+                        if not catalog.paths[key].exists():errors.append('缺少分类目录文件：'+key)
+                    if catalog.d is None:warnings.append('缺少可选duckdb；SQLite查询可用，Parquet化合物目录查询不可用。')
+                    if catalog.config['version']!=config['database'].get('catalog_version'):
+                        errors.append('分类目录版本与绑定版本不一致。')
+            except Exception as exc:errors.append('分类目录连接失败：'+str(exc))
+        expected = config.get('component_requirements',{}).get('data',{}).get('required_for_complete_repair','0.4.2-local.1')
+        repair_data_ready = bool(catalog_checks and catalog_checks['version']==expected)
+        if not repair_data_ready:
+            warnings.append('当前未绑定'+expected+'修订目录；软件更新不会补回旧数据组件遗漏的条件和标识关联。')
+        return {'ready_for_local_queries': not errors, 'errors': errors, 'warnings':warnings,
+                'complete_repair_data_bound': repair_data_ready,
+                'ready_for_parquet_catalog_queries':bool(catalog_checks and catalog_checks['identity_runtime_available'] and not errors),
                 'runtime': runtime,
-                'database_version': config['database']['version'],
+                'catalog_checks':catalog_checks,
+                'counts_scope':'preserved fish source snapshot; chemical expansion counts are returned by coverage',
+                'database_version': config['database']['version'],'database_checks':checks,
                 'counts': {t: c.execute('SELECT count(*) FROM ' + t).fetchone()[0] for t in
                            ('chemicals', 'measurements', 'sources', 'genes', 'proteins')},
                 'database_analyses': rows(c, 'SELECT analysis_id,version,status,scope FROM analyses'),
@@ -382,18 +434,40 @@ def main():
     p = argparse.ArgumentParser(description='鱼类毒性研究：查库、取证、建立空白课题、登记已审成果。')
     p.add_argument('--root', type=Path, default=ROOT)
     sub = p.add_subparsers(dest='command', required=True)
-    sub.add_parser('doctor')
+    a=sub.add_parser('doctor');a.add_argument('--deep',action='store_true',help='完整检查大文件哈希、数据库和关联')
     a = sub.add_parser('taxonomy'); a.add_argument('name'); a.add_argument('--taxid',type=int)
-    a = sub.add_parser('proteins'); a.add_argument('--species',required=True); a.add_argument('--term',default='')
+    for command in ('genes','proteins','pathways','toxicity','chemicals','properties','environment','bioactivity','mechanisms','compound-relations','entity-pathways','structure'):
+        a=sub.add_parser(command);a.add_argument('--species',default='');a.add_argument('--term',default='');a.add_argument('--limit',type=int,default=100);a.add_argument('--offset',type=int,default=0)
+        a.add_argument('--support',default='default');a.add_argument('--assertion',default='any',choices=['any','function','existence'])
+        a.add_argument('--source',default='',help='Exact source DOI or stored reference; bypasses chemical identity filters when --term is omitted')
+        a.add_argument('--endpoint',default='',help='Literal endpoint text within the selected observation scope')
+    a=sub.add_parser('pathway-members');a.add_argument('pathway');a.add_argument('--support',default='default');a.add_argument('--limit',type=int,default=100);a.add_argument('--offset',type=int,default=0)
+    a=sub.add_parser('sequence');a.add_argument('accession')
+    a=sub.add_parser('source-record');a.add_argument('identifier');a.add_argument('--kind',choices=['gene','protein','observation'],default='protein')
+    sub.add_parser('coverage')
     a = sub.add_parser('search'); a.add_argument('term')
     a = sub.add_parser('extract'); a.add_argument('--chemical', action='append', required=True); a.add_argument('--output', type=Path, required=True); a.add_argument('--history', action='store_true')
+    a.add_argument('--support',default='default')
     a = sub.add_parser('new'); a.add_argument('name'); a.add_argument('--question', required=True)
     a = sub.add_parser('register'); a.add_argument('manifest', type=Path)
     a = sub.add_parser('analyses'); a.add_argument('--chemical')
     args = p.parse_args(); root = args.root.resolve()
     if args.command == 'doctor':
-        result = doctor(root)
-    elif args.command in ('taxonomy','proteins'):
+        result = doctor(root,args.deep)
+    elif args.command in ('coverage','genes','proteins','pathways','pathway-members','toxicity','sequence','source-record','chemicals','properties','environment','bioactivity','mechanisms','compound-relations','entity-pathways','search','structure'):
+        from database_queries import query
+        config=load(config_path(root))
+        kind={'pathway-members':'members','source-record':getattr(args,'kind','protein')+'-record','search':'chemicals'}.get(args.command,args.command)
+        if kind=='observation-record':kind='observation'
+        term=getattr(args,'pathway',getattr(args,'accession',getattr(args,'identifier',getattr(args,'term',''))))
+        if (config.get('database') or {}).get('catalog'):
+            from catalog_access import open_catalog
+            with open_catalog(root,config) as c:result=c.query(kind,term,getattr(args,'species',''),getattr(args,'support','default'),getattr(args,'limit',100),getattr(args,'offset',0),getattr(args,'assertion','any'),source=getattr(args,'source',''),endpoint=getattr(args,'endpoint',''))
+        else:
+            c,_,_=connect(root)
+            try:result={'matches':search(c,term)} if args.command=='search' else query(c,kind,term,getattr(args,'species',''),getattr(args,'limit',100),getattr(args,'offset',0))
+            finally:c.close()
+    elif args.command == 'taxonomy':
         c,_,_=connect(root)
         try:
             name=args.name if args.command=='taxonomy' else args.species
@@ -411,7 +485,7 @@ def main():
     elif args.command == 'new':
         result = init_project(root, args.name, args.question)
     elif args.command == 'extract':
-        result = extract(root, args.chemical, args.output, args.history)
+        result = extract(root, args.chemical, args.output, args.history,args.support)
     elif args.command == 'register':
         result = register(root, args.manifest)
     elif args.command == 'analyses':

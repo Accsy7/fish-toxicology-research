@@ -15,7 +15,7 @@ def version(path):
 def inspect(home, hashes=True):
     home = Path(home).resolve()
     if not (home/'bundle.json').exists():
-        return {'bundle_version':None,'modified_files':[],'errors':['缺少 bundle.json，请从完整工作包安装。']}
+        return {'bundle_version':None,'modified_files':[],'errors':['缺少 bundle.json，请从对应版本的软件包安装。']}
     manifest=json.loads((home/'bundle.json').read_text('utf-8-sig'))
     errors,modified=[],[]
     for rel,expected in manifest['files'].items():

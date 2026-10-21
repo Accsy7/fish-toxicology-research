@@ -15,3 +15,5 @@ workspace.json
 !adapters/workbuddy/*.zip
 toolkit/skill/assets/approved-workbook-example.xlsx
 toolkit/skill/assets/accepted-preview.png
+
+!toolkit/workspace.json

@@ -2,8 +2,7 @@
 name: fish-toxicology-research
 description: 用于鱼类与有机污染物毒性研究的机制分析、相对风险比较、实验选物，以及已有研究的复核和成果生成。
 metadata:
-  version: 1.5.0
-  license: "CC-BY-4.0; code: MIT"
+  version: 1.5.1-rc.1
 ---
 
 # 鱼类毒性研究
@@ -14,7 +13,7 @@ metadata:
 
 从用户描述和现有材料整理研究范围、参照与比较条件；仅询问会改变判断的缺失信息。项目有冻结基准和当前版本入口时沿用它们，续做读取当前正式分析，新课题建立[课题输入](assets/new-project.json)。文字、格式修订只处理受影响部分。
 
-已接入工具的项目读取 `.fish-toxicology/workspace.json`，运行其中的 `query_tool doctor` 核对实际 skill、工具与资料库版本。首次接入按完整工作包的 `toolkit/INSTALL.md` 操作。按当前任务读取下列附文：
+已接入工具的项目读取 `.fish-toxicology/workspace.json`，运行其中的 `query_tool doctor` 核对实际 skill、工具与资料库版本。首次接入按软件包的 `toolkit/INSTALL.md` 操作。按当前任务读取下列附文：
 
 | 任务 | 阅读 |
 |---|---|
@@ -22,6 +21,7 @@ metadata:
 | 查库、运行工具、登记成果 | [工具接口](references/database-workflow.md) |
 | 内容复核、纠错、研究交付 | [质量检查](references/quality-review.md) |
 | 生成或维护工作簿、网页、图版 | [交付格式](references/accepted-formats.md) |
+| 检索无结果、条件绑定与完成登记 | [来源条件与完成检查](references/evidence-and-completion.md) |
 | 撰写或修改正文 | [表达审校](references/expression.md) |
 
 ## 工作逻辑

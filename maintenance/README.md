@@ -1,18 +1,14 @@
 # Maintenance checks
 
-Install Python dependencies with `python -m pip install -r toolkit/requirements.txt`.
-Download and extract the full workpack, then set `FISH_TEST_BUNDLE` to its directory
-to exercise installation, update/rollback, database and integration regressions:
+The 1.5.1-rc.1 software release and its data components are separate. Install `toolkit/requirements.txt` for source-only workbook tests.
 
-```powershell
-$env:FISH_TEST_BUNDLE = 'C:\Research\fish-toxicology-research-v1.5.0'
-python -X utf8 -B -m unittest discover -s maintenance -p "test_*.py" -v
+```text
+python -B -X utf8 -m unittest discover -s maintenance -p "test_*.py" -v
+python -B -X utf8 maintenance/validate_evidence_integration.py
 ```
 
-`test_renderers.py` can also run directly from a source checkout. Browser figure
-regressions use `node maintenance/test_figures.cjs --browser <Chromium executable>`
-with Playwright installed. The tests use synthetic data fixtures.
+`test_portable_install.py` checks installation without data, portable external-catalog binding, retained research/frontend settings, conflict refusal and rollback using synthetic SQLite fixtures. `test_quality_contract.py` checks source conditions and completion constraints. `test_renderers.py` retains the existing synthetic report checks. Historical full-workpack tests in `test_bundle.py` require their corresponding database bundle and are skipped for this software-only release.
 
-`python maintenance/package_skills.py` rebuilds the two uploadable skill archives.
-The database/browser source and its locked build instructions are included in the
-full workpack under `database-browser/browser-source.zip`.
+`maintenance/build_release.py --output OUTPUT --vendor-source PURE_PYTHON_VENDOR` builds software/source archives and adapters, with deterministic ZIP entries and hash manifests. Vendor input contains only the already distributed openpyxl and et_xmlfile libraries and their licenses. No SQLite, compiled catalog wheels, private research records or database UI are included.
+
+Targeted real-data query regressions are recorded separately from these fixtures. No software test is a new-topic scientific validation.

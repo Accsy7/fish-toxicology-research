@@ -1,6 +1,13 @@
 """Check explicit completion dependencies; never grant scientific validity or wet-lab approval."""
 from pathlib import Path
-import argparse, json, hashlib
+import argparse, json, hashlib, sys
+script=Path(__file__).resolve()
+tool_candidates=[script.parents[2]/'tools']+[p/'.fish-toxicology/tools' for p in script.parents]+[Path.cwd()/'.fish-toxicology/tools']
+tool_home=next((p for p in tool_candidates if (p/'quality_contract.py').is_file()),None)
+if tool_home is None:raise SystemExit('缺少同版本工具目录，请从完整工作包安装后运行完成检查。')
+sys.path.insert(0,str(tool_home))
+from quality_contract import validate_analysis, review_errors
+from analysis_checks import materialize
 
 def check(project, record, root):
     errors=[]
@@ -8,6 +15,7 @@ def check(project, record, root):
     def exists(value): return isinstance(value,str) and bool(value.strip()) and (root/value).is_file()
     def sha(p): return hashlib.sha256(p.read_bytes()).hexdigest()
     analysis={}
+    if record.get('schema_version')!='2.0.0':fail('COMPLETION_SCHEMA_REQUIRED','旧完成记录保留；新交付需 2.0.0 的研究目标状态与来源条件核验。')
     binding=record.get('analysis',{})
     if exists(binding.get('path')):
         p=root/binding['path']
@@ -27,6 +35,7 @@ def check(project, record, root):
             if value is None or actual.get(key)!=value: fail('UNBOUND_REVIEW',f'{p.name}: {key}')
         if not actual.get('reviewer') or not actual.get('findings'): fail('EMPTY_REVIEW',p.name)
         if kind=='publication_review':
+            for error in review_errors(actual):fail('REVIEW_CONTENT_CONFLICT',error)
             if actual.get('decision') not in ('accepted','accepted_with_stated_limits'): fail('UNACCEPTED_REVIEW',p.name)
             if set(actual.get('chemical_ids',[]))!={c['id'] for c in analysis.get('chemicals',[])}: fail('REVIEW_COVERAGE_MISMATCH',p.name)
             if entry.get('reviewer')!=actual.get('reviewer'): fail('REVIEWER_MISMATCH',p.name)
@@ -34,6 +43,12 @@ def check(project, record, root):
     if project.get('status')!='configured':fail('PROJECT_NOT_CONFIGURED','研究问题与范围尚未固定')
     if not project.get('research_question') or not project.get('comparison_conditions'):
         fail('MISSING_RESEARCH_CONTEXT','问题和比较条件必须明确；未知参数可单列')
+    analysis_base=(root/binding['path']).parent if binding.get('path') else root
+    try:
+        for error in validate_analysis(materialize(analysis),analysis_base,project):fail('SCIENTIFIC_DELIVERY_CONTRACT',error)
+    except (ValueError,KeyError,TypeError,IndexError) as exc:fail('INVALID_ANALYSIS_REFERENCE',str(exc))
+    objective=analysis.get('research_completion',{}).get('objective_status')
+    if record.get('objective_status')!=objective:fail('OBJECTIVE_STATUS_MISMATCH','完成记录与正式分析中的 complete/partial 状态不同')
     expected=project.get('scope',{})
     if not expected.get('candidates'):fail('EMPTY_CANDIDATE_SCOPE','不能把空白课题标为完成')
     rows=record.get('scope_dispositions',[])
@@ -52,10 +67,13 @@ def check(project, record, root):
             fail('UNEXPLAINED_BLOCK',key)
         if status=='not_applicable' and not all(r.get(k) for k in ['reason','alternative','impact']):
             fail('UNEXPLAINED_INAPPLICABILITY',key)
-        if r.get('category')=='candidates' and status!='completed':
+        if r.get('category')=='candidates' and status!='completed' and objective=='complete':
             fail('CANDIDATE_JUDGMENT_UNFINISHED',key+'；受阻方法不免除条件判断或并列')
     for key in ['candidate_predictions','risk_order_or_groups','representative_decisions','unresolved_items_and_impacts']:
-        if not exists(record.get('scientific_outputs',{}).get(key)):fail('MISSING_SCIENTIFIC_OUTPUT',key)
+        output=record.get('scientific_outputs',{}).get(key)
+        if not exists(output):fail('MISSING_SCIENTIFIC_OUTPUT',key)
+        elif binding.get('path') and (root/output).resolve()!=(root/binding['path']).resolve():
+            fail('UNBOUND_SCIENTIFIC_OUTPUT',key+'；新完成记录的科学内容指向同一正式分析，不能用无关文件占位。')
     review=record.get('content_review',{})
     review_file(review,'publication_review')
     if review.get('status')!='reviewed_with_stated_limits' or not review.get('reviewer') or not exists(review.get('record_file')):
@@ -68,10 +86,11 @@ def check(project, record, root):
         if c.get('status')!='passed' or not exists(c.get('record_file')):fail('UNVERIFIED_DELIVERY',key)
         review_file(c,'validation_record',key)
     unconfirmed=[x.get('name') for x in record.get('experimental_parameters',[]) if x.get('status')!='confirmed']
-    return {'status':'rejected' if errors else 'explicit_checks_passed', 'errors':errors,
+    return {'status':'rejected' if errors else ('partial_delivery_checks_passed' if objective=='partial' else 'explicit_checks_passed'), 'errors':errors,
+            'objective_status':objective,'completion_claim_consistent_with_bound_records':not errors,
             'scientific_review_performed_by_program':False,'experiment_execution_authorized':False,
             'unconfirmed_experimental_parameters':unconfirmed,
-            'meaning':'检查覆盖与记录存在性；不证明科学判断正确，也不把未知操作参数变成已确认。'}
+            'meaning':'核对来源条件、比较口径、目标状态和实际审核记录的一致性；不替代科学复核，也不把未知操作参数变成已确认。'}
 
 def main():
     p=argparse.ArgumentParser();p.add_argument('project',type=Path);p.add_argument('record',type=Path);p.add_argument('--output',type=Path)

@@ -73,7 +73,10 @@ if __name__=='__main__':
             from research import connect,rows
             connection,_,_=connect(a.workspace)
             lookup=lambda name:rows(connection,'SELECT * FROM taxa WHERE lower(scientific_name)=lower(?)',(name,))
-        issues=check(materialize(data),lookup)
+        resolved=materialize(data)
+        issues=check(resolved,lookup)
+        from quality_contract import validate_analysis
+        issues+=validate_analysis(resolved,a.analysis.resolve().parent)
         print(json.dumps({'errors':issues,'checks':'declared identity, comparison, numeric and scope checks'},ensure_ascii=False,indent=2))
         raise SystemExit(bool(issues))
     finally:

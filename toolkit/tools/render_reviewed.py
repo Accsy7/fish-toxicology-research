@@ -11,6 +11,7 @@ from render_workbook import render as workbook
 from research import skill_home
 from analysis_checks import materialize, check as analysis_checks
 from bundle_runtime import inspect
+from quality_contract import assert_analysis, review_errors, presentation_data
 
 
 def write(path, value):
@@ -37,6 +38,8 @@ def check_review(review, data, base):
         raise ValueError("Review chemical coverage differs")
     if not record.get("findings"):
         raise ValueError("Review must contain actual findings")
+    errors=review_errors(record)
+    if errors:raise ValueError('\n'.join(errors))
     return record
 
 
@@ -102,7 +105,8 @@ def render(path, output, profile_path=None, stage="reviewed"):
         if not spec.get("review"):
             raise ValueError("A content-bound review is required; use --stage preview for format work")
         check_review(spec["review"], data, path.parent)
-    data = resolved
+        assert_analysis(resolved,analysis_path.parent)
+    data = presentation_data(resolved)
     template = (profile_path.parent / profile["workbook"]["template"]).resolve()
     output.mkdir(parents=True)
     write(output / "render_status.json", {"status": "rendering", "stage": stage})
@@ -116,6 +120,7 @@ def render(path, output, profile_path=None, stage="reviewed"):
             "analysis_sha256": sha(analysis_path), "profile_sha256": sha(profile_path),
             "template_sha256": sha(template), "workbook_readback": checks,
             "runtime": runtime,
+            "research_objective_status":data.get('research_completion',{}).get('objective_status'),
             "inputs": spec.get("inputs", []),
             "files": {p.relative_to(output).as_posix(): sha(p) for p in output.rglob("*")
                       if p.is_file() and p.name != "render_status.json"},

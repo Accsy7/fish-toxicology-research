@@ -1,0 +1,25 @@
+{
+  "schema_version": "1.0",
+  "software_version": "1.5.1-rc.1",
+  "data": {
+    "component": "fish-toxicology-catalog",
+    "required_for_complete_repair": "0.4.2-local.1",
+    "bundled": false,
+    "install_option": "--catalog",
+    "catalog_relative_path": "revisions/0.4.2-local.1/catalog.json",
+    "baseline_snapshot": "0.4.1-local.1",
+    "layout": "Extract the unchanged baseline components and the separate revision into one DATA_ROOT.",
+    "revision_archive": {
+      "name": "observations-0.4.2-local.1.sqlite3.zip",
+      "bytes": 2943275551,
+      "sha256": "73e6ac38dfcff685377d0ccbb5b1659f47d9c5d5f782b65f0fff3a6263f82973",
+      "delivery": "separate data distribution; not uploaded with software release"
+    }
+  },
+  "frontend": {
+    "version": "1.13.1-local.1",
+    "bundled": false,
+    "policy": "Preserve the approved independent frontend. No database UI is installed or replaced."
+  },
+  "scientific_validation": "No new-topic scientific validation is claimed by this software release."
+}
