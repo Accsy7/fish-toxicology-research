@@ -1,0 +1,67 @@
+[
+  {
+    "name": "react",
+    "version": "19.2.8",
+    "license": "MIT",
+    "scope": "browser runtime",
+    "source": "https://registry.npmjs.org/react/19.2.8",
+    "license_files": [
+      {
+        "path": "LICENSES/third-party/browser-runtime/react@19.2.8/LICENSE",
+        "sha256": "da6d3703ed11cbe42bd212c725957c98da23cbff1998c05fa4b3d976d1a58e93"
+      }
+    ]
+  },
+  {
+    "name": "react-dom",
+    "version": "19.2.8",
+    "license": "MIT",
+    "scope": "browser runtime",
+    "source": "https://registry.npmjs.org/react-dom/19.2.8",
+    "license_files": [
+      {
+        "path": "LICENSES/third-party/browser-runtime/react-dom@19.2.8/LICENSE",
+        "sha256": "da6d3703ed11cbe42bd212c725957c98da23cbff1998c05fa4b3d976d1a58e93"
+      }
+    ]
+  },
+  {
+    "name": "scheduler",
+    "version": "0.27.0",
+    "license": "MIT",
+    "scope": "browser runtime",
+    "source": "https://registry.npmjs.org/scheduler/0.27.0",
+    "license_files": [
+      {
+        "path": "LICENSES/third-party/browser-runtime/scheduler@0.27.0/LICENSE",
+        "sha256": "da6d3703ed11cbe42bd212c725957c98da23cbff1998c05fa4b3d976d1a58e93"
+      }
+    ]
+  },
+  {
+    "name": "html-to-image",
+    "version": "1.11.13",
+    "license": "MIT",
+    "scope": "browser runtime",
+    "source": "https://registry.npmjs.org/html-to-image/1.11.13",
+    "license_files": [
+      {
+        "path": "LICENSES/third-party/browser-runtime/html-to-image@1.11.13/LICENSE",
+        "sha256": "9fe73723f7a9e91057f73aafc9b6a3c3b2174db2b3ddc0a3a6a8ddf2bad68e37"
+      }
+    ]
+  },
+  {
+    "name": "esbuild",
+    "version": "0.27.4",
+    "license": "MIT",
+    "scope": "build tool",
+    "source": "https://registry.npmjs.org/esbuild/0.27.4",
+    "license_files": [
+      {
+        "path": "LICENSES/third-party/browser-runtime/esbuild@0.27.4/LICENSE.md",
+        "sha256": "b40ec5baec7bb34fa5b1c09521fa3cd52d5fad7adafed74932a2010d3612a681"
+      }
+    ]
+  }
+]

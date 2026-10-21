@@ -45,3 +45,13 @@ Outputs are saved in your project's `research/` directory. Reopen the same proje
 - Tools cover evidence queries, calculation-record checks, plotting and exports. Specialized calculations, such as molecular docking, are configured separately when appropriate.
 
 </details>
+
+## Version 1.5.0
+
+Updates back up plugin files and preserve research files and database settings. Excel workbooks and web reports support configurable layouts, with fixes for long text, negative chart values and empty datasets.
+
+[Release notes](CHANGELOG.md) · [Installation and updates](INSTALL.en.md)
+
+## License
+
+Code: [MIT](LICENSE). Research instructions, documentation, figures and templates: [CC BY 4.0](LICENSES/CC-BY-4.0.txt). Database compilation: [ODC-By 1.0](LICENSES/ODC-By-1.0.txt). Code examples use MIT; original explanatory text in the database uses CC BY 4.0. Third-party content retains its own [licenses and attribution](THIRD_PARTY_NOTICES.md).

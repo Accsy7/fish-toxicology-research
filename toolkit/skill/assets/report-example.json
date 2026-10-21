@@ -1,0 +1,199 @@
+{
+  "schema_version": "2.0",
+  "project_id": "format-example",
+  "analysis_version": "example-1",
+  "title": "渲染示例：物质与实验结果",
+  "context": "演示数据",
+  "chemicals": [
+    {
+      "id": "A",
+      "name": "物质 A",
+      "group": "第一组",
+      "prediction": "示例结论 A",
+      "basis": "示例分析记录",
+      "doubt": "示例待验证问题",
+      "status": "complete",
+      "detail_link": "查看分析",
+      "details": [
+        {
+          "label": "实验条件",
+          "text": "演示条件，不含实际研究数据。",
+          "source_ids": [
+            "S1"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "B",
+      "name": "物质 B",
+      "group": "第二组",
+      "prediction": "示例结论 B",
+      "basis": "示例分析记录",
+      "doubt": "示例待验证问题",
+      "status": "complete",
+      "detail_link": "查看分析",
+      "details": []
+    }
+  ],
+  "sources": [
+    {
+      "id": "S1",
+      "title": "示例资料",
+      "url": "https://example.org",
+      "note": "用于演示来源链接。"
+    }
+  ],
+  "scope": [
+    {
+      "stage": "范围",
+      "scope": "A / B",
+      "question": "演示表格与图形联动",
+      "method": "示例数据",
+      "note": "",
+      "status": "已整理"
+    }
+  ],
+  "representatives": [
+    {
+      "slot": "1",
+      "name": "物质 A",
+      "group": "第一组",
+      "question": "示例检验问题",
+      "reason": "示例选择理由",
+      "comparison": "与 B 比较",
+      "chemical_ids": [
+        "A"
+      ]
+    }
+  ],
+  "experiments": [
+    {
+      "id": "E1",
+      "chemical": "A",
+      "object": "演示对象",
+      "condition": "演示条件",
+      "result": "示例结果",
+      "interpretation": "示例解释",
+      "note": "",
+      "source": "S1",
+      "source_ids": [
+        "S1"
+      ],
+      "chemical_ids": [
+        "A"
+      ]
+    }
+  ],
+  "computations": [
+    {
+      "id": "C1",
+      "method": "演示计算",
+      "input": "示例输入",
+      "n": 2,
+      "result": 1.25,
+      "note": "演示数值单元格"
+    }
+  ],
+  "target_proteins": [],
+  "reference_proteins": [],
+  "unresolved": [],
+  "paragraphs": {
+    "mechanism": [
+      "图形与表格读取同一份演示数据。"
+    ]
+  },
+  "panels": [
+    {
+      "id": "network",
+      "type": "network",
+      "section": "mechanism",
+      "title": "关系图示例",
+      "wide": true,
+      "width": 640,
+      "height": 200,
+      "caption": "点击节点与连线查看记录。",
+      "nodes": [
+        {
+          "id": "n1",
+          "label": "起点",
+          "x": 150,
+          "y": 100,
+          "kind": "ligand",
+          "detail": "示例节点 A"
+        },
+        {
+          "id": "n2",
+          "label": "终点",
+          "x": 480,
+          "y": 100,
+          "kind": "outcome",
+          "detail": "示例节点 B"
+        }
+      ],
+      "edges": [
+        {
+          "id": "e1",
+          "from": "n1",
+          "to": "n2",
+          "kind": "activation",
+          "detail": "示例关系"
+        }
+      ]
+    },
+    {
+      "id": "matrix",
+      "type": "matrix",
+      "section": "mechanism",
+      "title": "结果矩阵",
+      "wide": true,
+      "columns": [
+        "实验结果"
+      ],
+      "rows": [
+        {
+          "label": "A",
+          "chemical_ids": [
+            "A"
+          ],
+          "values": [
+            "结果 A"
+          ]
+        },
+        {
+          "label": "B",
+          "chemical_ids": [
+            "B"
+          ],
+          "values": [
+            "结果 B"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "values",
+      "type": "bar",
+      "section": "structure",
+      "title": "数值示例",
+      "wide": true,
+      "unit": "示例单位",
+      "rows": [
+        {
+          "label": "A",
+          "chemical_ids": [
+            "A"
+          ],
+          "value": 1.25
+        },
+        {
+          "label": "B",
+          "chemical_ids": [
+            "B"
+          ],
+          "value": 2.5
+        }
+      ]
+    }
+  ]
+}

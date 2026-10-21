@@ -1,0 +1,50 @@
+[
+  {
+    "path": "CC-BY-4.0.txt",
+    "url": "https://creativecommons.org/licenses/by/4.0/legalcode.txt",
+    "sha256": "9ba9550ad48438d0836ddab3da480b3b69ffa0aac7b7878b5a0039e7ab429411",
+    "bytes": 18657
+  },
+  {
+    "path": "ODC-By-1.0.txt",
+    "url": "https://raw.githubusercontent.com/spdx/license-list-data/main/text/ODC-By-1.0.txt",
+    "sha256": "b1c4de4bf91c95eec945ea7cbe0575fd52e7ee8fa430acb01d323d8214b1c482",
+    "bytes": 19808
+  },
+  {
+    "path": "third-party/openpyxl/LICENCE.rst",
+    "url": "https://files.pythonhosted.org/packages/c0/da/977ded879c29cbd04de313843e76868e6e13408a94ed6b987245dc7c8506/openpyxl-3.1.5-py2.py3-none-any.whl",
+    "sha256": "0c84bb42f5d367e5ebf9fc2dde35b16141df5ee0fdc189250858bc6c5560f69e",
+    "bytes": 1131,
+    "package": "openpyxl",
+    "version": "3.1.5",
+    "archive_sha256": "5282c12b107bffeef825f4617dc029afaf41d0ea60823bbb665ef3079dc79de2"
+  },
+  {
+    "path": "third-party/et_xmlfile/AUTHORS.txt",
+    "url": "https://files.pythonhosted.org/packages/c1/8b/5fe2cc11fee489817272089c4203e679c63b570a5aaeb18d852ae3cbba6a/et_xmlfile-2.0.0-py3-none-any.whl",
+    "sha256": "7f038029ea5463605dd2278d300099a381bce9e90dda83ccab2042346b6c8107",
+    "bytes": 82,
+    "package": "et_xmlfile",
+    "version": "2.0.0",
+    "archive_sha256": "7a91720bc756843502c3b7504c77b8fe44217c85c537d85037f0f536151b2caa"
+  },
+  {
+    "path": "third-party/et_xmlfile/LICENCE.python",
+    "url": "https://files.pythonhosted.org/packages/c1/8b/5fe2cc11fee489817272089c4203e679c63b570a5aaeb18d852ae3cbba6a/et_xmlfile-2.0.0-py3-none-any.whl",
+    "sha256": "4ccdaaebc0f44b83720ec0399bb7ab329adce067dd62f73c5535a2dc05628ab2",
+    "bytes": 14688,
+    "package": "et_xmlfile",
+    "version": "2.0.0",
+    "archive_sha256": "7a91720bc756843502c3b7504c77b8fe44217c85c537d85037f0f536151b2caa"
+  },
+  {
+    "path": "third-party/et_xmlfile/LICENCE.rst",
+    "url": "https://files.pythonhosted.org/packages/c1/8b/5fe2cc11fee489817272089c4203e679c63b570a5aaeb18d852ae3cbba6a/et_xmlfile-2.0.0-py3-none-any.whl",
+    "sha256": "0c84bb42f5d367e5ebf9fc2dde35b16141df5ee0fdc189250858bc6c5560f69e",
+    "bytes": 1131,
+    "package": "et_xmlfile",
+    "version": "2.0.0",
+    "archive_sha256": "7a91720bc756843502c3b7504c77b8fe44217c85c537d85037f0f536151b2caa"
+  }
+]

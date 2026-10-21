@@ -1,0 +1,189 @@
+{
+  "basis": "Dependency notices from the official vis-network 10.1.2 build commit and 3Dmol.js tag 2.5.5 lock files.",
+  "locks": {
+    "vis-network-build-lock.json": "ab93f59e8489514ee2ba84e2a3f2e632544fd1a91daa58c32d62a4c9f5794e79",
+    "3dmol-build-lock.json": "149648ce8bfa2f9fd5a2e53f98ea3098cd5a3fab88b87d1dc0b09f0f5adb835e"
+  },
+  "packages": [
+    {
+      "name": "@egjs/hammerjs",
+      "version": "2.0.17",
+      "license_expression": "MIT",
+      "url": "https://registry.npmjs.org/@egjs/hammerjs/-/hammerjs-2.0.17.tgz",
+      "files": [
+        {
+          "path": "@egjs__hammerjs@2.0.17/LICENSE.md",
+          "sha256": "68e3fbc87924b2ca7f6a10d52be2ee83e86f7d2f28e74f343795e8f9e58f3ec1"
+        }
+      ],
+      "archive_sha256": "d931dbb173f8028d1fe3167cd8049f4064bf268d55e9f6d374d8cea289b84cfd",
+      "status": "license_text_retained"
+    },
+    {
+      "name": "@types/hammerjs",
+      "version": "2.0.46",
+      "license_expression": "MIT",
+      "url": "https://registry.npmjs.org/@types/hammerjs/-/hammerjs-2.0.46.tgz",
+      "files": [
+        {
+          "path": "@types__hammerjs@2.0.46/hammerjs__LICENSE",
+          "sha256": "c2cfccb812fe482101a8f04597dfc5a9991a6b2748266c47ac91b6a5aae15383"
+        }
+      ],
+      "archive_sha256": "e2910d0a38e21ef312f1b889b71f2d61c7b247fe526a601ef2e45fb243abdd1a",
+      "status": "license_text_retained"
+    },
+    {
+      "name": "component-emitter",
+      "version": "1.3.1",
+      "license_expression": "MIT",
+      "url": "https://registry.npmjs.org/component-emitter/-/component-emitter-1.3.1.tgz",
+      "files": [
+        {
+          "path": "component-emitter@1.3.1/LICENSE",
+          "sha256": "0f0b408b8b871d983e767528c6dc51e0ad7efaa022890c449fe2b2e1ee24dbb7"
+        }
+      ],
+      "archive_sha256": "f65c306d4a782baa8535616a4593104806fa2d0c2957d3a605366c37cd0db3c9",
+      "status": "license_text_retained"
+    },
+    {
+      "name": "keycharm",
+      "version": "0.4.0",
+      "license_expression": "(Apache-2.0 OR MIT)",
+      "url": "https://registry.npmjs.org/keycharm/-/keycharm-0.4.0.tgz",
+      "files": [
+        {
+          "path": "keycharm@0.4.0/LICENSE-MIT",
+          "sha256": "7909cb1efaa8bd800a6d33d73cb9538bfe56a7da61c1fd8b4afb9ddd557ec044"
+        },
+        {
+          "path": "keycharm@0.4.0/LICENSE-APACHE-2.0",
+          "sha256": "7a1da246f5e03ea6f987021848a3ff9d9e9a86a54adf96a216f2ee57a9a762d6"
+        }
+      ],
+      "archive_sha256": "1dd82923d5c1d0b507d1e4e579171a4a94afe0fdfee8354062c6594b700a043b",
+      "status": "license_text_retained"
+    },
+    {
+      "name": "uuid",
+      "version": "14.0.1",
+      "license_expression": "MIT",
+      "url": "https://registry.npmjs.org/uuid/-/uuid-14.0.1.tgz",
+      "files": [
+        {
+          "path": "uuid@14.0.1/LICENSE.md",
+          "sha256": "beaa6b04fb82e41dd2ad679e19e27953afb5999b1abbb455b6564e78ebfeb332"
+        }
+      ],
+      "archive_sha256": "e062c57ed120ea135478f305da04802bf69eab23fbc0ca2bae6989b6855390c4",
+      "status": "license_text_retained"
+    },
+    {
+      "name": "vis-data",
+      "version": "8.0.4",
+      "license_expression": "(Apache-2.0 OR MIT)",
+      "url": "https://registry.npmjs.org/vis-data/-/vis-data-8.0.4.tgz",
+      "files": [
+        {
+          "path": "vis-data@8.0.4/LICENSE-MIT",
+          "sha256": "1f65085e54c036645082257618db2c7b787e68c3b02485e214ecd09e0834ee8f"
+        },
+        {
+          "path": "vis-data@8.0.4/LICENSE-APACHE-2.0",
+          "sha256": "1509904280a272780fd69c04b858f512cf216f8e3464a0dd98d8f34416feced9"
+        }
+      ],
+      "archive_sha256": "c74d9af6c12881436a88f2602315b6dd94084da50ee503477e1345e801df0d0c",
+      "status": "license_text_retained"
+    },
+    {
+      "name": "vis-util",
+      "version": "6.0.0",
+      "license_expression": "(Apache-2.0 OR MIT)",
+      "url": "https://registry.npmjs.org/vis-util/-/vis-util-6.0.0.tgz",
+      "files": [
+        {
+          "path": "vis-util@6.0.0/LICENSE-MIT",
+          "sha256": "b88d2c1898485a909bfd92d1a2a676c266db5384d7153f3bdb80caebb7038351"
+        },
+        {
+          "path": "vis-util@6.0.0/LICENSE-APACHE-2.0",
+          "sha256": "1509904280a272780fd69c04b858f512cf216f8e3464a0dd98d8f34416feced9"
+        }
+      ],
+      "archive_sha256": "fa0b0f72a9724724310948ee8eec92be5c2de54384a85dc6140e939ab41a5e03",
+      "status": "license_text_retained"
+    },
+    {
+      "name": "iobuffer",
+      "version": "5.4.0",
+      "license_expression": null,
+      "url": "https://registry.npmjs.org/iobuffer/-/iobuffer-5.4.0.tgz",
+      "files": [
+        {
+          "path": "iobuffer@5.4.0/LICENSE",
+          "sha256": "1c22118fd112e8c394a5ec0598d2e2dfcdc19b3e1055ac3eaccdb2522b777335"
+        }
+      ],
+      "archive_sha256": "497377ddfee90206d1341c2f65ed252de46c9f29aa946712cf51494e9e4452d6",
+      "status": "license_text_retained"
+    },
+    {
+      "name": "netcdfjs",
+      "version": "3.0.0",
+      "license_expression": null,
+      "url": "https://registry.npmjs.org/netcdfjs/-/netcdfjs-3.0.0.tgz",
+      "files": [
+        {
+          "path": "netcdfjs@3.0.0/LICENSE",
+          "sha256": "a0176285793b5de2daeb0b3d2e2b41e550f089446e64583f3133d0840c79b1ed"
+        }
+      ],
+      "archive_sha256": "942535740894092248567528ea3644be42b6a0627ee1b554a6659edae6577b9c",
+      "status": "license_text_retained"
+    },
+    {
+      "name": "pako",
+      "version": "2.1.0",
+      "license_expression": null,
+      "url": "https://registry.npmjs.org/pako/-/pako-2.1.0.tgz",
+      "files": [
+        {
+          "path": "pako@2.1.0/LICENSE",
+          "sha256": "a04665b3b2de56c66730c1f720f528175739e4104f79073614aa611da1e85539"
+        }
+      ],
+      "archive_sha256": "49fedc8866b4abfc8e71dc7fe75ad4ef1ff1ac9601b0642cff88ee5bf2338709",
+      "status": "license_text_retained"
+    },
+    {
+      "name": "upng-js",
+      "version": "2.1.0",
+      "license_expression": null,
+      "url": "https://registry.npmjs.org/upng-js/-/upng-js-2.1.0.tgz",
+      "files": [
+        {
+          "path": "upng-js@2.1.0/LICENSE",
+          "sha256": "c1fb8861eca211bf5aea574358aba7039396c0c1824c2a1477cc126d398efd89"
+        }
+      ],
+      "archive_sha256": "f9aba5cb21db38a737c5ca21ce4274432b24f365bf1eab0375bd41871c1aeffc",
+      "status": "license_text_retained"
+    },
+    {
+      "name": "pako",
+      "version": "1.0.11",
+      "license_expression": null,
+      "url": "https://registry.npmjs.org/pako/-/pako-1.0.11.tgz",
+      "files": [
+        {
+          "path": "pako@1.0.11/LICENSE",
+          "sha256": "a04665b3b2de56c66730c1f720f528175739e4104f79073614aa611da1e85539"
+        }
+      ],
+      "archive_sha256": "0d4028dc0352a740c30cbfd772917f2744986d42bfa0b06ec7642bffe7ad3941",
+      "status": "license_text_retained"
+    }
+  ]
+}

@@ -238,6 +238,9 @@ def register(root, manifest_path):
     analysis_path = (manifest_path.parent / m['analysis']).resolve()
     if sha(analysis_path) != m['analysis_sha256']:
         raise ValueError('正式分析已变化，与复核绑定不一致。')
+    analysis = load(analysis_path)
+    if analysis.get('project_id')!=pid or analysis.get('analysis_version')!=version:
+        raise ValueError('登记的课题或版本与正式分析不一致。')
     review = m['content_review']
     if review.get('decision') not in ('accepted', 'accepted_with_stated_limits') or not review.get('reviewer'):
         raise ValueError('缺少实际内容复核者或有效复核结果。')
@@ -245,9 +248,19 @@ def register(root, manifest_path):
         raise ValueError('仍有阻断问题或未说明阻断问题状态。')
     if not review.get('records'):
         raise ValueError('缺少实际复核记录。')
+    bound_reviews=0
     for record in review['records']:
         if sha(manifest_path.parent / record['path']) != record['sha256']:
             raise ValueError('复核记录变化或不匹配。')
+        file=manifest_path.parent / record['path']
+        if file.suffix.lower()=='.json' and load(file).get('record_type')=='publication_review':
+            from render_reviewed import check_review
+            checked=check_review(record,analysis,manifest_path.parent)
+            if checked['reviewer']!=review['reviewer'] or checked['decision']!=review['decision']:
+                raise ValueError('登记的复核者或决定与实际复核记录不一致。')
+            bound_reviews+=1
+    if not bound_reviews:
+        raise ValueError('需要绑定本次正式分析的 publication_review 内容复核记录。')
     kinds = {r['kind'] for r in m.get('artifacts', [])}
     if not {'xlsx', 'interactive_html'}.issubset(kinds):
         raise ValueError('缺少XLSX或交互网页。')
@@ -261,8 +274,10 @@ def register(root, manifest_path):
                       for p in artifact_path.parent.rglob('*') if p.is_file() and '__pycache__' not in p.parts}
             if not expected or expected != actual:
                 raise ValueError('网页配套数据、脚本或图版变化，与复核绑定不一致。')
-    analysis = load(analysis_path)
-    candidate_ids = {r['id'] for r in analysis['candidates']}
+    items=analysis.get('chemicals',analysis.get('candidates',[]))
+    candidate_ids = {r['id'] for r in items}
+    if not candidate_ids or len(candidate_ids)!=len(items):
+        raise ValueError('分析物质编号应完整且唯一。')
     if candidate_ids != set(review.get('candidate_ids', [])):
         raise ValueError('内容复核范围未覆盖当前候选集。')
     c = connect(root)[0] if load(config_path(root)).get('database') else None
@@ -328,14 +343,19 @@ def catalog_html(root, catalog):
 
 def doctor(root):
     config = load(config_path(root))
+    from bundle_runtime import inspect
+    runtime = inspect(root / '.fish-toxicology' if (root / '.fish-toxicology').exists() else root)
     if not config.get('database'):
-        return {'ready_for_local_queries': False, 'errors': [],
-                'ready_for_public_source_research': True,
+        errors=runtime['errors'] + (['组件与包清单不同：'+'；'.join(runtime['modified_files'])] if runtime['modified_files'] else [])
+        return {'ready_for_local_queries': False, 'errors': errors, 'runtime':runtime,
+                'ready_for_public_source_research': not errors,
                 'database_status': 'not_connected',
                 'scientific_analysis_or_review_performed': False}
     c, config, db = connect(root)
     try:
-        errors = []
+        errors = list(runtime['errors'])
+        if runtime['modified_files']:
+            errors.append('组件与包清单不同：'+'；'.join(runtime['modified_files']))
         integrity = c.execute('PRAGMA quick_check').fetchone()[0]
         foreign = list(c.execute('PRAGMA foreign_key_check'))
         if integrity != 'ok' or foreign:
@@ -348,6 +368,7 @@ def doctor(root):
             if not (root / path).is_file():
                 errors.append('缺少文件：' + path)
         return {'ready_for_local_queries': not errors, 'errors': errors,
+                'runtime': runtime,
                 'database_version': config['database']['version'],
                 'counts': {t: c.execute('SELECT count(*) FROM ' + t).fetchone()[0] for t in
                            ('chemicals', 'measurements', 'sources', 'genes', 'proteins')},
@@ -362,6 +383,8 @@ def main():
     p.add_argument('--root', type=Path, default=ROOT)
     sub = p.add_subparsers(dest='command', required=True)
     sub.add_parser('doctor')
+    a = sub.add_parser('taxonomy'); a.add_argument('name'); a.add_argument('--taxid',type=int)
+    a = sub.add_parser('proteins'); a.add_argument('--species',required=True); a.add_argument('--term',default='')
     a = sub.add_parser('search'); a.add_argument('term')
     a = sub.add_parser('extract'); a.add_argument('--chemical', action='append', required=True); a.add_argument('--output', type=Path, required=True); a.add_argument('--history', action='store_true')
     a = sub.add_parser('new'); a.add_argument('name'); a.add_argument('--question', required=True)
@@ -370,6 +393,21 @@ def main():
     args = p.parse_args(); root = args.root.resolve()
     if args.command == 'doctor':
         result = doctor(root)
+    elif args.command in ('taxonomy','proteins'):
+        c,_,_=connect(root)
+        try:
+            name=args.name if args.command=='taxonomy' else args.species
+            taxa=rows(c,'SELECT * FROM taxa WHERE lower(scientific_name)=lower(?) OR common_name=?',(name,name))
+            if args.command=='taxonomy':
+                result={'query':name,'matches':taxa,'status':'matched' if taxa else 'no_local_match'}
+                if args.taxid is not None and taxa and not any(t['ncbi_taxid']==args.taxid for t in taxa):
+                    raise ValueError('物种名称与指定 taxid 不符；数据库对应：'+str(taxa))
+            else:
+                found=[]
+                for t in taxa:
+                    found.extend(rows(c,"SELECT p.*,t.scientific_name,t.ncbi_taxid FROM proteins p JOIN taxa t USING(taxon_id) WHERE p.taxon_id=? AND (instr(lower(coalesce(p.gene_label,'')),lower(?))>0 OR instr(lower(coalesce(p.name,'')),lower(?))>0 OR instr(lower(p.protein_id),lower(?))>0)",(t['taxon_id'],args.term,args.term,args.term)))
+                result={'species':name,'term':args.term,'matches':found,'count':len(found),'status':'matched' if found else 'no_local_match'}
+        finally: c.close()
     elif args.command == 'new':
         result = init_project(root, args.name, args.question)
     elif args.command == 'extract':

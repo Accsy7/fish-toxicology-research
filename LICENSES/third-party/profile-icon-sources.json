@@ -1,0 +1,20 @@
+{
+  "library": "Tabler Icons",
+  "version": "3.35.0",
+  "license": "MIT",
+  "icons": {
+    "flask": "https://raw.githubusercontent.com/tabler/tabler-icons/v3.35.0/icons/outline/flask.svg",
+    "file-text": "https://raw.githubusercontent.com/tabler/tabler-icons/v3.35.0/icons/outline/file-text.svg",
+    "affiliate": "https://raw.githubusercontent.com/tabler/tabler-icons/v3.35.0/icons/outline/affiliate.svg",
+    "database": "https://raw.githubusercontent.com/tabler/tabler-icons/v3.35.0/icons/outline/database.svg",
+    "download": "https://raw.githubusercontent.com/tabler/tabler-icons/v3.35.0/icons/outline/download.svg",
+    "plus": "https://raw.githubusercontent.com/tabler/tabler-icons/v3.35.0/icons/outline/plus.svg",
+    "check": "https://raw.githubusercontent.com/tabler/tabler-icons/v3.35.0/icons/outline/check.svg",
+    "arrow-left": "https://raw.githubusercontent.com/tabler/tabler-icons/v3.35.0/icons/outline/arrow-left.svg",
+    "arrow-right": "https://raw.githubusercontent.com/tabler/tabler-icons/v3.35.0/icons/outline/arrow-right.svg",
+    "external-link": "https://raw.githubusercontent.com/tabler/tabler-icons/v3.35.0/icons/outline/external-link.svg",
+    "chevron-down": "https://raw.githubusercontent.com/tabler/tabler-icons/v3.35.0/icons/outline/chevron-down.svg",
+    "book": "https://raw.githubusercontent.com/tabler/tabler-icons/v3.35.0/icons/outline/book.svg",
+    "file-code": "https://raw.githubusercontent.com/tabler/tabler-icons/v3.35.0/icons/outline/file-code.svg"
+  }
+}

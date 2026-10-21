@@ -1,11 +1,36 @@
 """Check explicit completion dependencies; never grant scientific validity or wet-lab approval."""
 from pathlib import Path
-import argparse, json
+import argparse, json, hashlib
 
 def check(project, record, root):
     errors=[]
     def fail(code, detail): errors.append({'code':code,'detail':detail})
     def exists(value): return isinstance(value,str) and bool(value.strip()) and (root/value).is_file()
+    def sha(p): return hashlib.sha256(p.read_bytes()).hexdigest()
+    analysis={}
+    binding=record.get('analysis',{})
+    if exists(binding.get('path')):
+        p=root/binding['path']
+        try: analysis=json.loads(p.read_text('utf-8-sig'))
+        except (ValueError,OSError): fail('INVALID_ANALYSIS','正式分析需要可读取的 JSON')
+        if binding.get('sha256')!=sha(p): fail('ANALYSIS_CHANGED','正式分析与本次完成记录不一致')
+    else: fail('MISSING_ANALYSIS_BINDING','完成记录需指向本次正式分析并记录 sha256')
+    publication=hashlib.sha256(json.dumps(analysis,ensure_ascii=False,sort_keys=True,separators=(',',':')).encode()).hexdigest()
+    def review_file(entry,kind,check_name=None):
+        if not exists(entry.get('record_file')): return
+        p=root/entry['record_file']
+        try: actual=json.loads(p.read_text('utf-8-sig'))
+        except (ValueError,OSError): fail('UNREADABLE_REVIEW',str(p));return
+        if entry.get('sha256')!=sha(p): fail('REVIEW_CHANGED',str(p))
+        expected={'record_type':kind,'project_id':analysis.get('project_id'),'analysis_version':analysis.get('analysis_version'),'publication_sha256':publication}
+        for key,value in expected.items():
+            if value is None or actual.get(key)!=value: fail('UNBOUND_REVIEW',f'{p.name}: {key}')
+        if not actual.get('reviewer') or not actual.get('findings'): fail('EMPTY_REVIEW',p.name)
+        if kind=='publication_review':
+            if actual.get('decision') not in ('accepted','accepted_with_stated_limits'): fail('UNACCEPTED_REVIEW',p.name)
+            if set(actual.get('chemical_ids',[]))!={c['id'] for c in analysis.get('chemicals',[])}: fail('REVIEW_COVERAGE_MISMATCH',p.name)
+            if entry.get('reviewer')!=actual.get('reviewer'): fail('REVIEWER_MISMATCH',p.name)
+        if check_name and check_name not in actual.get('checks',[]): fail('CHECK_NOT_RECORDED',check_name)
     if project.get('status')!='configured':fail('PROJECT_NOT_CONFIGURED','研究问题与范围尚未固定')
     if not project.get('research_question') or not project.get('comparison_conditions'):
         fail('MISSING_RESEARCH_CONTEXT','问题和比较条件必须明确；未知参数可单列')
@@ -32,6 +57,7 @@ def check(project, record, root):
     for key in ['candidate_predictions','risk_order_or_groups','representative_decisions','unresolved_items_and_impacts']:
         if not exists(record.get('scientific_outputs',{}).get(key)):fail('MISSING_SCIENTIFIC_OUTPUT',key)
     review=record.get('content_review',{})
+    review_file(review,'publication_review')
     if review.get('status')!='reviewed_with_stated_limits' or not review.get('reviewer') or not exists(review.get('record_file')):
         fail('MISSING_CONTENT_REVIEW','实际身份、范围与审核文件不可由导出器生成')
     for category,ids in expected.items():
@@ -40,6 +66,7 @@ def check(project, record, root):
     for key in ['explicit_contradictions','negative_delivery_cases','expression_and_falsification','final_artifact_reading']:
         c=record.get('checks',{}).get(key,{})
         if c.get('status')!='passed' or not exists(c.get('record_file')):fail('UNVERIFIED_DELIVERY',key)
+        review_file(c,'validation_record',key)
     unconfirmed=[x.get('name') for x in record.get('experimental_parameters',[]) if x.get('status')!='confirmed']
     return {'status':'rejected' if errors else 'explicit_checks_passed', 'errors':errors,
             'scientific_review_performed_by_program':False,'experiment_execution_authorized':False,

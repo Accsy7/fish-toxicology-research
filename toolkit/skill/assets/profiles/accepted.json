@@ -1,0 +1,636 @@
+{
+  "version": "2.0",
+  "name": "accepted-00-07",
+  "workbook": {
+    "template": "../workbook-template.xlsx",
+    "sheets": [
+      {
+        "name": "00研究范围",
+        "title": "00研究范围",
+        "template_sheet": 0,
+        "collection": "scope",
+        "columns": [
+          {
+            "field": "stage",
+            "label": "通路环节／项目"
+          },
+          {
+            "field": "scope",
+            "label": "研究范围"
+          },
+          {
+            "field": "question",
+            "label": "研究问题"
+          },
+          {
+            "field": "method",
+            "label": "分析方式"
+          },
+          {
+            "field": "note",
+            "label": "条件与用途"
+          },
+          {
+            "field": "status",
+            "label": "当前状态"
+          }
+        ],
+        "columns_count": 6,
+        "header_row": 3,
+        "header_sample": 3,
+        "body_sample": 4,
+        "freeze": "A4",
+        "kind": "table"
+      },
+      {
+        "name": "01代表物建议",
+        "title": "01代表物建议",
+        "template_sheet": 1,
+        "collection": "representatives",
+        "columns": [
+          {
+            "field": "slot",
+            "label": "名额作用"
+          },
+          {
+            "field": "name",
+            "label": "物质"
+          },
+          {
+            "field": "group",
+            "label": "分组"
+          },
+          {
+            "field": "question",
+            "label": "检验问题"
+          },
+          {
+            "field": "reason",
+            "label": "选择理由"
+          },
+          {
+            "field": "comparison",
+            "label": "替代比较与未覆盖范围"
+          }
+        ],
+        "columns_count": 6,
+        "header_row": 5,
+        "header_sample": 5,
+        "body_sample": 6,
+        "freeze": "C6",
+        "kind": "table"
+      },
+      {
+        "name": "02全家族预测",
+        "title": "02全家族预测",
+        "template_sheet": 2,
+        "collection": "chemicals",
+        "columns": [
+          {
+            "field": "id",
+            "label": "编号"
+          },
+          {
+            "field": "name",
+            "label": "物质"
+          },
+          {
+            "field": "group",
+            "label": "分组"
+          },
+          {
+            "field": "prediction",
+            "label": "预测"
+          },
+          {
+            "field": "basis",
+            "label": "分析理由"
+          },
+          {
+            "field": "doubt",
+            "label": "主要疑点"
+          },
+          {
+            "field": "detail_link",
+            "label": "完整分析",
+            "detail_link": true
+          }
+        ],
+        "columns_count": 7,
+        "header_row": 4,
+        "header_sample": 4,
+        "body_sample": 5,
+        "freeze": "D5",
+        "kind": "table"
+      },
+      {
+        "name": "03逐物质分析",
+        "title": "03逐物质分析",
+        "template_sheet": 3,
+        "collection": "chemicals",
+        "columns": [],
+        "columns_count": 8,
+        "header_row": 3,
+        "header_sample": 3,
+        "body_sample": 4,
+        "freeze": "C3",
+        "kind": "blocks",
+        "label_end": 2
+      },
+      {
+        "name": "04实验记录",
+        "title": "04实验记录",
+        "template_sheet": 4,
+        "collection": "experiments",
+        "columns": [
+          {
+            "field": "id",
+            "label": "记录"
+          },
+          {
+            "field": "chemical",
+            "label": "涉及物质"
+          },
+          {
+            "field": "object",
+            "label": "研究对象／阶段"
+          },
+          {
+            "field": "condition",
+            "label": "浓度、时长与条件"
+          },
+          {
+            "field": "result",
+            "label": "实际观察与终点"
+          },
+          {
+            "field": "interpretation",
+            "label": "机制解释"
+          },
+          {
+            "field": "note",
+            "label": "条件与资料层级"
+          },
+          {
+            "field": "source",
+            "label": "来源"
+          }
+        ],
+        "columns_count": 8,
+        "header_row": 4,
+        "header_sample": 4,
+        "body_sample": 5,
+        "freeze": "C5",
+        "kind": "table",
+        "append": [
+          {
+            "title": "来源目录",
+            "collection": "sources",
+            "columns": [
+              {
+                "field": "id",
+                "label": "来源号"
+              },
+              {
+                "field": "title",
+                "label": "来源标题"
+              },
+              {
+                "field": "note",
+                "label": "资料内容"
+              },
+              {
+                "field": "url",
+                "label": "链接"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "05计算核查",
+        "title": "05计算核查",
+        "template_sheet": 5,
+        "collection": "computations",
+        "columns": [
+          {
+            "field": "id",
+            "label": "项目"
+          },
+          {
+            "field": "method",
+            "label": "对象／方法"
+          },
+          {
+            "field": "input",
+            "label": "输入与单位"
+          },
+          {
+            "field": "n",
+            "label": "数量"
+          },
+          {
+            "field": "result",
+            "label": "结果"
+          },
+          {
+            "field": "note",
+            "label": "解释与条件"
+          }
+        ],
+        "columns_count": 6,
+        "header_row": 4,
+        "header_sample": 4,
+        "body_sample": 5,
+        "freeze": "C5",
+        "kind": "table",
+        "widths": {
+          "D": 13,
+          "E": 30
+        },
+        "table_style_sheet": 4
+      },
+      {
+        "name": "06目标鱼蛋白范围",
+        "title": "06目标鱼蛋白范围",
+        "template_sheet": 6,
+        "collection": "target_proteins",
+        "columns": [
+          {
+            "field": "name",
+            "label": "鱼基因名称"
+          },
+          {
+            "field": "pathway",
+            "label": "所属环节"
+          },
+          {
+            "field": "gene_id",
+            "label": "目标鱼基因编号"
+          },
+          {
+            "field": "protein",
+            "label": "蛋白记录及本次序列"
+          },
+          {
+            "field": "function",
+            "label": "机制分析与研究问题"
+          },
+          {
+            "field": "method",
+            "label": "适用分析"
+          },
+          {
+            "field": "status",
+            "label": "当前状态"
+          },
+          {
+            "field": "mapping",
+            "label": "纳入与对应情况"
+          },
+          {
+            "field": "reference",
+            "label": "参考基因／成员"
+          },
+          {
+            "field": "source",
+            "label": "数据库来源"
+          }
+        ],
+        "columns_count": 10,
+        "header_row": 3,
+        "header_sample": 3,
+        "body_sample": 4,
+        "freeze": "C4",
+        "kind": "table"
+      },
+      {
+        "name": "07参考蛋白与来源",
+        "title": "07参考蛋白与来源",
+        "template_sheet": 7,
+        "collection": "reference_proteins",
+        "columns": [
+          {
+            "field": "name",
+            "label": "基因／成员"
+          },
+          {
+            "field": "species",
+            "label": "物种"
+          },
+          {
+            "field": "accession",
+            "label": "UniProt记录"
+          },
+          {
+            "field": "pathway",
+            "label": "所属环节"
+          },
+          {
+            "field": "function",
+            "label": "功能与作用方向"
+          },
+          {
+            "field": "inclusion",
+            "label": "纳入原因"
+          },
+          {
+            "field": "code",
+            "label": "注释代码"
+          },
+          {
+            "field": "target",
+            "label": "目标鱼对应基因"
+          },
+          {
+            "field": "status",
+            "label": "对应状态"
+          },
+          {
+            "field": "source",
+            "label": "原始研究／注释"
+          },
+          {
+            "field": "url",
+            "label": "数据库来源"
+          }
+        ],
+        "columns_count": 11,
+        "header_row": 3,
+        "header_sample": 3,
+        "body_sample": 4,
+        "freeze": "C4",
+        "kind": "table",
+        "empty": "本次分析文件未提供参考蛋白记录。"
+      }
+    ]
+  },
+  "web": {
+    "initial_section": "mechanism",
+    "family_columns": [
+      {
+        "field": "id",
+        "label": "编号"
+      },
+      {
+        "field": "name",
+        "label": "物质"
+      },
+      {
+        "field": "group",
+        "label": "分组"
+      },
+      {
+        "field": "prediction",
+        "label": "预测"
+      },
+      {
+        "field": "basis",
+        "label": "分析理由"
+      },
+      {
+        "field": "doubt",
+        "label": "主要疑点"
+      },
+      {
+        "field": "detail_link",
+        "label": "完整分析",
+        "detail_link": true
+      }
+    ],
+    "sections": [
+      {
+        "id": "family",
+        "title": "全家族比较",
+        "blocks": [
+          {
+            "kind": "text",
+            "field": "paragraphs.family"
+          },
+          {
+            "kind": "chemicals",
+            "title": "相对风险分组",
+            "columns": [
+              {
+                "field": "id",
+                "label": "编号"
+              },
+              {
+                "field": "name",
+                "label": "物质"
+              },
+              {
+                "field": "group",
+                "label": "分组"
+              },
+              {
+                "field": "prediction",
+                "label": "预测"
+              },
+              {
+                "field": "basis",
+                "label": "分析理由"
+              },
+              {
+                "field": "doubt",
+                "label": "主要疑点"
+              },
+              {
+                "field": "detail_link",
+                "label": "完整分析",
+                "detail_link": true
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "mechanism",
+        "title": "机制与逐物质推导",
+        "blocks": [
+          {
+            "kind": "text",
+            "field": "paragraphs.mechanism"
+          },
+          {
+            "kind": "panels"
+          },
+          {
+            "kind": "details"
+          }
+        ]
+      },
+      {
+        "id": "structure",
+        "title": "结构、计算与实验",
+        "blocks": [
+          {
+            "kind": "text",
+            "field": "paragraphs.structure"
+          },
+          {
+            "kind": "panels"
+          },
+          {
+            "kind": "table",
+            "id": "calculations",
+            "title": "计算记录",
+            "collection": "computations",
+            "columns": [
+              {
+                "field": "id",
+                "label": "项目"
+              },
+              {
+                "field": "method",
+                "label": "对象／方法"
+              },
+              {
+                "field": "input",
+                "label": "输入与单位"
+              },
+              {
+                "field": "n",
+                "label": "数量"
+              },
+              {
+                "field": "result",
+                "label": "结果"
+              },
+              {
+                "field": "note",
+                "label": "解释与条件"
+              }
+            ]
+          },
+          {
+            "kind": "table",
+            "id": "experiments",
+            "title": "实验记录",
+            "collection": "experiments",
+            "columns": [
+              {
+                "field": "id",
+                "label": "记录"
+              },
+              {
+                "field": "chemical",
+                "label": "涉及物质"
+              },
+              {
+                "field": "object",
+                "label": "研究对象／阶段"
+              },
+              {
+                "field": "condition",
+                "label": "浓度、时长与条件"
+              },
+              {
+                "field": "result",
+                "label": "实际观察与终点"
+              },
+              {
+                "field": "interpretation",
+                "label": "机制解释"
+              },
+              {
+                "field": "note",
+                "label": "条件与资料层级"
+              },
+              {
+                "field": "source",
+                "label": "来源"
+              }
+            ]
+          },
+          {
+            "kind": "table",
+            "id": "source-table",
+            "title": "来源目录",
+            "collection": "sources",
+            "columns": [
+              {
+                "field": "id",
+                "label": "来源号"
+              },
+              {
+                "field": "title",
+                "label": "来源标题"
+              },
+              {
+                "field": "note",
+                "label": "资料内容"
+              },
+              {
+                "field": "url",
+                "label": "链接"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "representatives",
+        "title": "代表物与验证",
+        "blocks": [
+          {
+            "kind": "text",
+            "field": "paragraphs.representatives"
+          },
+          {
+            "kind": "table",
+            "id": "representative-table",
+            "title": "代表物与检验问题",
+            "collection": "representatives",
+            "columns": [
+              {
+                "field": "slot",
+                "label": "名额作用"
+              },
+              {
+                "field": "name",
+                "label": "物质"
+              },
+              {
+                "field": "group",
+                "label": "分组"
+              },
+              {
+                "field": "question",
+                "label": "检验问题"
+              },
+              {
+                "field": "reason",
+                "label": "选择理由"
+              },
+              {
+                "field": "comparison",
+                "label": "替代比较与未覆盖范围"
+              }
+            ]
+          },
+          {
+            "kind": "table",
+            "id": "unresolved-table",
+            "title": "后续研究问题",
+            "collection": "unresolved",
+            "columns": [
+              {
+                "field": "item",
+                "label": "待解决问题"
+              },
+              {
+                "field": "impact",
+                "label": "结论影响"
+              },
+              {
+                "field": "handling",
+                "label": "后续处理"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,42 @@
+[
+  {
+    "file": "excel.svg",
+    "source": "https://raw.githubusercontent.com/tabler/tabler-icons/v3.35.0/icons/outline/file-type-xls.svg",
+    "sha256": "40ffbee1c89b0c446b8ab5d60154305c634aad6c1a72558f68f4d3341a6f1d2c",
+    "bytes": 672,
+    "license": "MIT; Tabler-LICENSE.txt"
+  },
+  {
+    "file": "database.svg",
+    "source": "https://raw.githubusercontent.com/microsoft/fluentui-system-icons/main/assets/Database/SVG/ic_fluent_database_48_color.svg",
+    "sha256": "9d0d93c81d819f13a9541286d35bf0fc7c7993721aca91e4ff5945a1d98f5b7c",
+    "bytes": 2004
+  },
+  {
+    "file": "Fluent-LICENSE.txt",
+    "source": "https://raw.githubusercontent.com/microsoft/fluentui-system-icons/main/LICENSE",
+    "sha256": "69bc45dc42b9acb96a69823adbc6ae538374e3c0bde169b855b32c48eaaef52f",
+    "bytes": 1078
+  },
+  {
+    "file": "table.svg",
+    "source": "https://raw.githubusercontent.com/microsoft/fluentui-system-icons/main/assets/Document%20Table/SVG/ic_fluent_document_table_24_regular.svg",
+    "sha256": "c76eaa00d41479ae85c10053b7a8b0cb1f24ba5d9f57eb82456b2f201c56a271",
+    "bytes": 917,
+    "license": "MIT; Fluent-LICENSE.txt"
+  },
+  {
+    "file": "document.svg",
+    "source": "https://raw.githubusercontent.com/microsoft/fluentui-system-icons/main/assets/Document%20Text/SVG/ic_fluent_document_text_48_color.svg",
+    "sha256": "a0f5e47363db1434001dbdebba42c73617d2e4089759ed0db55a7bf839f79446",
+    "bytes": 2016,
+    "license": "MIT; Fluent-LICENSE.txt"
+  },
+  {
+    "file": "code.svg",
+    "source": "https://raw.githubusercontent.com/microsoft/fluentui-system-icons/main/assets/Code/SVG/ic_fluent_code_24_color.svg",
+    "sha256": "1ed45a35832159e21371499a04c88482819e04981024efc0c839d3ee04e053a9",
+    "bytes": 1441,
+    "license": "MIT; Fluent-LICENSE.txt"
+  }
+]

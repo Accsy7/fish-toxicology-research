@@ -1,6 +1,6 @@
 interface:
   display_name: "鱼类毒性研究"
   short_description: "比较污染物对鱼类的毒性，选择实验代表物，生成研究表格和网页"
-  default_prompt: "请用 $fish-toxicology-research 帮我比较这个鱼类毒性课题的候选物，选择实验代表物，并生成表格和网页。"
+  default_prompt: "请用 $fish-toxicology-research 分析这个鱼类毒性课题，比较各物质的影响，选择实验代表物，并生成表格和网页。"
 policy:
   allow_implicit_invocation: true

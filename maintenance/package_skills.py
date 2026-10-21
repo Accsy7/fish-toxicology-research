@@ -20,7 +20,7 @@ def build(root=ROOT):
         'name: ' + NAME, 'description: ' + json.dumps(description, ensure_ascii=False),
         'description_zh: ' + json.dumps(description, ensure_ascii=False),
         'description_en: "Fish toxicology research, candidate comparison and experiment selection."',
-        'version: ' + json.dumps(version), 'author: "Fish toxicology research toolkit"'])
+        'version: ' + json.dumps(version), 'license: "CC-BY-4.0; code: MIT"', 'author: "Fish toxicology research toolkit"'])
     result = []
     for client in ('claude', 'workbuddy'):
         output = root / 'adapters' / client / (NAME + '.zip')

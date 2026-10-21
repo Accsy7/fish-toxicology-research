@@ -1,5 +1,6 @@
 {
-  "schema_version": "1.0.0",
+  "schema_version": "1.1.0",
+  "analysis": {"path": null, "sha256": null},
   "stage": "scientific_analysis",
   "scope_dispositions": [],
   "scientific_outputs": {"candidate_predictions": null, "risk_order_or_groups": null, "representative_decisions": null, "unresolved_items_and_impacts": null},
