@@ -5,7 +5,7 @@
 </p>
 
 <p align="center">
-  <strong><a href="https://github.com/Accsy7/fish-toxicology-research/releases/latest/download/fish-toxicology-research-workpack.zip">Download full package</a></strong>　 /　
+  <strong><a href="https://github.com/Accsy7/fish-toxicology-research/releases/download/v1.5.1-rc.1/fish-toxicology-research-software-1.5.1-rc.1.zip">Download software prerelease</a></strong>　 /　
   <a href="https://github.com/Accsy7/fish-toxicology-research/blob/main/docs/INSTALL.en.md">Installation</a>　 /　
   <a href="docs/METHODS.en.md">How it works</a>
 </p>
@@ -23,7 +23,7 @@ The AI uses research findings and experimental conditions to make testable predi
 
 ## Start a study
 
-1. **Prepare your project.** Download and extract the full package, then create a separate folder for your study.
+1. **Prepare your project.** Download and extract the software package, then create a separate folder for your study.
 2. **Load the plugin.** Follow the [client guide](https://github.com/Accsy7/fish-toxicology-research/blob/main/docs/INSTALL.en.md). Give the AI the package's `toolkit/INSTALL.md` and ask: **“Connect this research tool to the current project.”**
 3. **Describe the research question.** Specify the species, candidates and effects of interest. Add existing papers or experimental plans. For example:
 
@@ -40,15 +40,15 @@ Outputs are saved in your project's `research/` directory. Reopen the same proje
 <details>
 <summary><strong>Package contents and scope</strong></summary>
 
-- The **full package** includes the plugin, a SQLite database snapshot, its SQL schema and a browser. The **source repository** includes the skill, query and export programs, templates and client adapters.
+- The **1.5.1-rc.1 software package** contains the skill, query and export programs, templates, client adapters and Excel dependencies. Database catalog **0.4.2-local.1** and the approved independent frontend **1.13.1-local.1** are separate components. The 1.5.0 full workpack remains a historical release.
 - The database stores chemical identities and structures, experimental conditions and effects, genes, proteins and source records. New studies supplement the evidence for their own scope.
 - Tools cover evidence queries, calculation-record checks, plotting and exports. Specialized calculations, such as molecular docking, are configured separately when appropriate.
 
 </details>
 
-## Version 1.5.0
+## Version 1.5.1-rc.1 — prerelease
 
-Updates back up plugin files and preserve research files and database settings. Excel workbooks and web reports support configurable layouts, with fixes for long text, negative chart values and empty datasets.
+This prerelease adds source-based retrieval diagnostics, per-observation experimental conditions and explicit research-completion checks. The installer binds portable external catalogs with `--catalog` and preserves existing research, data and frontend settings. Targeted engineering regressions are separate from new-topic scientific validation.
 
 [Release notes](CHANGELOG.md) · [Installation and updates](INSTALL.en.md)
 

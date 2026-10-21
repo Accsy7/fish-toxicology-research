@@ -1,45 +1,37 @@
 # Installation and updates
 
-[简体中文](INSTALL.zh-CN.md)
+Version **1.5.1-rc.1** is a software prerelease for supervised research use. It contains the skill, query and evidence checks, report tools, templates and Excel dependencies. It does not contain the scientific databases or the independent database frontend. The original 1.5.0 full workpack remains available in its historical release.
 
-Workpack version: 1.5.0. This bundle includes the skill, query and rendering tools, default XLSX/HTML templates, a read-only database snapshot, and its browser. Python 3.10+ is required. XLSX dependencies are included.
+## Connect a project
 
-## WorkBuddy
-
-1. Extract the entire ZIP to a permanent folder. The database stays in this folder.
-2. Create an empty research project folder.
-3. Open PowerShell in the extracted bundle folder and run:
-
-```powershell
-.\Install-WorkBuddy.ps1 -ProjectPath "C:\Research\fish-test" -ReplaceManaged
-```
-
-The installer deploys the same skill and tools into the project and updates WorkBuddy's discovery entry. Existing managed components are backed up; research files and separate custom configuration are retained. If Python is unavailable, supply `-PythonPath "path to python.exe"` or use the equivalent Python command below in WorkBuddy's environment.
-
-4. Open the new project in WorkBuddy and start a fresh conversation. Refresh the skill list or restart WorkBuddy if it still shows the previous version.
-5. Ask the AI to read `.fish-toxicology/skill/SKILL.md`, run `.fish-toxicology/tools/research.py doctor`, and begin the research question.
-
-The doctor's `bundle_version`, `components.skill`, and `components.tools` should all be `1.5.0`; `errors` and `modified_files` should be empty. Tools and defaults are in `.fish-toxicology/`; research outputs go into `research/`.
-
-## Python commands and other clients
+1. Download the [software package](https://github.com/Accsy7/fish-toxicology-research/releases/download/v1.5.1-rc.1/fish-toxicology-research-software-1.5.1-rc.1.zip) and extract it to a permanent folder. Create a separate study folder.
+2. If using the expanded database, extract the unchanged 0.4.1 baseline components into a chosen `DATA_ROOT`. Extract `observations-0.4.2-local.1.sqlite3.zip` into that same directory. The revision creates `revisions/0.4.2-local.1/` and preserves the old root observation database.
+3. Give your AI the package's `toolkit/INSTALL.md` and ask it to connect the tool to your study. The AI runs the installer using the selected client's option and the real catalog path, for example:
 
 ```text
-python -B toolkit/install.py --project "absolute project path" --client workbuddy --replace-managed
-python -B "project/.fish-toxicology/tools/research.py" doctor
+python toolkit/install.py --project STUDY_FOLDER --client codex --catalog DATA_ROOT/revisions/0.4.2-local.1/catalog.json
 ```
 
-Other client values are `codex`, `claude`, and `deepseek`. `portable` installs only the project entry. Uploadable skill archives are in adapters; use the installer to connect local tools and the database.
+Use `claude`, `deepseek`, `workbuddy`, `both` (Codex and Claude Code) or `portable` for the corresponding environment. An uploadable skill archive is a discovery entry; local queries still require the software and readable data. Cloud conversations cannot access a Windows path without an actual file transfer and binding.
 
-## Updating an existing project
+Python 3.10 or newer is required. The software ZIP includes the pure Python Excel dependencies. Optional expanded Parquet identity queries use the dependencies in `toolkit/requirements-catalog.txt`; these compiled packages are not bundled. Without DuckDB, supported SQLite queries remain available and report that Parquet identity sources are unavailable. A source checkout needs `python -m pip install -r toolkit/requirements.txt` for workbook export.
+
+## Update an installed project
 
 ```text
-python -B toolkit/install.py --project "existing project path" --client workbuddy --update-tools --replace-managed
+python toolkit/install.py --project STUDY_FOLDER --client codex --update-tools --catalog DATA_ROOT/revisions/0.4.2-local.1/catalog.json
 ```
 
-Updates preserve the database binding, research directory, and separate presentation profiles. Component backups are in `.fish-toxicology/backups/`, with original paths in index.json. Use an empty project for a new study and retain its research records.
+The installer backs up managed files, preserves research and custom settings, and refuses to overwrite locally modified tools unless explicitly resolved. Omitting `--catalog` retains the existing database binding; it does not apply the data revision. `--database` supports a standalone historical SQLite snapshot and is mutually exclusive with `--catalog`.
 
-## Rendering and configuration
+Run `python .fish-toxicology/tools/research.py doctor` from the study folder. `complete_repair_data_bound` states whether the 0.4.2 revision is connected. A passing software check does not establish a scientific conclusion or complete a new study.
 
-Defaults provide sheets 00–07 and four report sections. The workbook, web charts, and downloads share the analysis data. Species, pathways, chemicals, and panels come from the project. Profiles configure fields, styles, sections, and search fields. See [render input](toolkit/skill/references/render-input.md).
+## Independent frontend
 
-Batch SVG/PNG/PDF export uses export_figures.cjs and requires Node.js, Playwright, and Chromium/Edge. The web report also offers chart downloads and printing. Chart data follows the same filter.
+The approved frontend is **1.13.1-local.1** and is maintained separately. This software package installs no database UI and does not replace an existing frontend. To use an existing frontend with the local API, supply its directory explicitly:
+
+```text
+python .fish-toxicology/tools/browse_catalog.py --frontend-dir FRONTEND_DIRECTORY
+```
+
+Do not substitute the old 1.9.0-local.6 test frontend for the approved independent frontend. The research report renderer remains included and retains the established 00–07 workbook and report formats.
